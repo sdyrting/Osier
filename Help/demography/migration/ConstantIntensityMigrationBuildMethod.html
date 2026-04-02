@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Constant Intensity</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Constant Intensity</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+\(
+\newcommand{\constantintensity}{\texttt{CONSTANT\_INTENSITY}}
+\newcommand{\migprob}{q}
+\newcommand{\intensity}{\mu}
+\)
+
+<div id="section">
+<h2>Constant Intensity</h2>
+<p>
+Given a set of age nodes \(0=x_0,x_1,…,x_n\) and migration probabilities \(\migprob_0, \migprob_1,\ldots,\migprob_{n-1}\) for age intervals \([x_i,x_{i+1})\), the instantaneous migration intensity over interval \([x_i,x_{i+1})\) is constant and equal to 
+\begin{equation}
+	\intensity_i=\frac{-1}{x_{i+1}-x_i}\log(1-\migprob_i)
+\end{equation}
+</p>
+
+
+
+</div>
+</body>
+</html>

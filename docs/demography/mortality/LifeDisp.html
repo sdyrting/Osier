@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LifeDisp</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>LifeDisp</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\sfrac}{l}
+\newcommand{\force}{\mu}
+\newcommand{\lifedisp}{e^\dagger}
+\)
+<div id="section">
+<h2>LifeDisp(MortHandle,[Age],[Epsilon])</h2>
+<p>Returns \(\lifedisp_x\) the life disparity at Age \(x\) given by the integral 
+\begin{equation}
+	\lifedisp_x=-\int_x^\infty \frac{\sfrac(a)}{\sfrac(x)}\log\left(\frac{\sfrac(a)}{\sfrac(x)}\right)da .
+\end{equation}
+If Age is not specified it defaults to 0. Epsilon specifies the accuracy of the numerical integral. If not specified it defaults to Epsilon=1.0e-6.
+</p>
+
+</div>
+</body>
+</html>

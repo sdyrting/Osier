@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calibrated Spline</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+<!--
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+-->
+</head>
+<body>
+
+<div id="header">
+<h1>Calibrated Spline</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>Calibrated Spline</h2>
+<p>Estimates a complete mortality curve from abridged data using <a href="https://www.researchgate.net/publication/317996305_Estimating_Age-Specific_Mortality_Using_Calibrated_Splines?_sg=kTmU-WZvz9yyteKQenbtN6lSX4hjdQ6LAQpsVxoz323Wox4fYvFW9GEJHffew_rE8nAlF22hkEsjziZTYLf-3FTNatldtmLp2ZPGK7vv.vsC7qsd7QFIS2YgOiA3wS2l5VhZ0q_vUUJT2bDqhANlRbs33dqNgMji8_fBDfVVn4hC88h3KdvzbbE_ghwQdpw">Calibrated Splines</a>. The user must specify the population size and calibration data using a extrainfo string of the form PInfo[,CSHandle]. If PInfo is a number then it specifies the population per age interval in the mortality object. If PInfo is a string of the form "P=X" where X is a number then the total population is equal to X and the population per age interval will be calculated assuming the population follows a stationary distribution. If the PInfo string is not of this format then it specifies the name of a <a href="../pcurves/PCurves.html">PCURVE</a> object from which the population per mortality age interval is calculated. CSHandle is name of the results object with ResultsType="CSDATA" containing the calibration data. If not specified it defaults to "DefaultCSData_Mort-M". MALE_CALIBRATED_SPLINE and FEMALE_CALIBRATED_SPLINE buildmethods are the same as CALIBRATED_SPLINE except that the default values for CSHandle are "DefaultCSData_Mort-M" and "DefaultCSData_Mort-F" respectively.</p>
+</div>
+</body>
+</html>

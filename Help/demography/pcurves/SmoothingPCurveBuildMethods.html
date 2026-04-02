@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Smoothing BuildMethods</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Smoothing BuildMethods</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\popsym}{N}
+\newcommand{\spopsym}{\tilde{\popsym}}
+\newcommand{\pop}[2]{{_{#1}\popsym_{#2}}}
+\newcommand{\spop}[2]{{_{#1}\spopsym_{#2}}}
+\newcommand{\window}{l}
+\newcommand{\weight}[2]{W_{#1,#2}}
+\newcommand{\maxage}{\omega}
+\newcommand{\fpop}[1]{\spopsym_{#1}}
+\newcommand{\fpos}[1]{\spopsym^+_{#1}}
+\)
+
+<div id="section">
+<h2 id="Feeney">Feeney</h2>
+<p>
+Let \(\maxage\) be the start of the open interval in a population age distribution, assumed to be a multiple of five. The first step in Feeney's method is to redistribute the excess population at ages a multiple of five to the neighbouring age intervals of four years. This is done iteratively by first setting
+\begin{eqnarray}
+	\fpop{x}&=&\pop{}{x}\\
+	\fpos{x}&=&\pop{4}{x+1}
+\end{eqnarray}
+for \(x\) a multiple of five in the range \(0\le x \lt\maxage\) and then repeating the update
+\begin{eqnarray}
+	\fpop{x}&\leftarrow&\fpop{x}-(\Delta_x-1)(\fpos{x-5}+\fpos{x})\\
+	\fpos{x}&\leftarrow&(\Delta_x+\Delta_{x+5}-1)\fpos{x}
+\end{eqnarray}
+until convergence. Here
+\begin{equation}
+	\Delta_x=\frac{8}{9}\left[\frac{\fpos{x-5}+\fpop{x}+\fpos{x}}{\fpos{x-5}+\fpos{x}}\right] 
+		\quad\mathrm{for}\quad  0\lt x\lt\maxage
+\end{equation}
+and
+\begin{equation}
+	\Delta_0=\Delta_{\maxage}=1 .
+\end{equation}
+The second step is to form the smoothed age distribution at five-year intervals using the interpolation
+\begin{eqnarray}
+	\spop{5}{0}&=&\pop{5}{0}\\
+	\spop{5}{x}&=&3\fpop{x}+2\fpop{x+5},\quad 0\lt x\lt\maxage-5\\
+	\spop{5}{\maxage-5}&=&\pop{5}{\maxage-5}\\
+	\spop{\infty}{\maxage}&=&\pop{\infty}{\maxage}
+\end{eqnarray}
+The third step is to adjust each value by a common factor to recover the original population total. The five-year intervals are then split using Sprague.
+</p>
+
+<h2 id="Sprague">Sprague</h2>
+<p>
+The age distribution is abridged into five-year intervals and then split using Sprague.
+</p>
+
+<h2 id="WeightedAverage">Weighted Average</h2>
+<p>
+The population is smoothed at single-year intervals using a running weighted average
+\begin{equation}
+	\spop{}{x}=\sum_{k=-\window}^\window \weight{\window}{k}\pop{}{x+k}/\sum_{k=-\window}^\window \weight{\window}{k}
+\end{equation}
+The window width \(\window=\min(5,|x|,|\maxage-x|)\). The default window weights are symmetric in \(k\) with values
+</p>
+<p>
+<center>
+<table>
+<tr>
+	<th>\(k\)</th> <th>\(\quad 0\quad\)</th> <th>\(\quad 1\quad\)</th> <th>\(\quad 2\quad\)</th> <th>\(\quad 3\quad\)</th> 
+	<th>\(\quad 4\quad\)</th> <th>\(\quad 5\quad\)</th>
+</tr>
+<tr>
+	<td>\(\weight{5}{k}\)</td> <td>5</td> <td>4</td> <td>3</td> <td>2</td> <td>1</td> <td>0</td>
+</tr>
+<tr>
+	<td>\(\weight{4}{k}\)</td> <td>5</td> <td>4</td> <td>3</td> <td>2</td> <td>1</td> <td> </td>
+</tr>
+<tr>
+	<td>\(\weight{3}{k}\)</td> <td>4</td> <td>3</td> <td>2</td> <td>1</td> <td> </td> <td> </td>   
+</tr>
+<tr>
+	<td>\(\weight{2}{k}\)</td> <td>3</td> <td>2</td> <td>1</td> <td> </td> <td> </td> <td> </td>     
+</tr>
+<tr>
+	<td>\(\weight{1}{k}\)</td> <td>2</td> <td>1</td> <td> </td> <td> </td> <td> </td> <td> </td>     
+</tr>
+<tr>
+	<td>\(\weight{0}{k}\)</td> <td>1</td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
+</tr>
+</table>
+</center>
+<br>
+<p>
+The default weights can be changed by appending extrainfo strings Weights1, Weights2, Weights3, Weights4, and Weights5 to the buildmethod value. For example to specify \(\weight{2}{k}\) use WEIGHTED_AVERAGE:"Weights2=\(\weight{2}{-2}\) | \(\weight{2}{-1}\)|\(\weight{2}{0}\)|\(\weight{2}{1}\)|\(\weight{2}{2}\)".
+</p>
+
+<h2 id="CarrierFarrag">Carrier-Farrag</h2>
+<p>
+The age distribution is abridged into five-year intervals. For each mid panel ten-year interval the smoothed five-year populations are
+\begin{eqnarray}
+	\spop{5}{x+5}&=&\pop{10}{x}\left[1+\left(\frac{\pop{10}{x-10}}{\pop{10}{x+10}}\right)^{1/4}\right]^{-1}\\
+	\spop{5}{x}&=&\pop{10}{x}-\spop{5}{x+5}
+\end{eqnarray}
+The five-year intervals are then split using Sprague.
+</p>
+
+<h2 id="KarupKingNewton">Karup-King-Newton</h2>
+<p>
+The age distribution is abridged into five-year intervals. For each mid panel ten-year interval the smoothed five-year populations are
+\begin{eqnarray}
+	\spop{5}{x}&=&\pop{10}{x}/2+\left(\pop{10}{x-10}-\pop{10}{x+10}\right)/16\\
+	\spop{5}{x+5}&=&\pop{10}{x}-\spop{5}{x}
+\end{eqnarray}
+The five-year intervals are then split using Karup-King.
+</p>
+
+<h2 id="ArriagaLight">Arriaga's Light Smoothing</h2>
+<p>
+The age distribution is abridged into five-year intervals. In the first ten-year interval the smoothed five-year populatons are
+\begin{eqnarray}
+	\spop{5}{x+5}&=&(8\,\pop{10}{x}+5\,\pop{10}{x+10}-\pop{10}{x+20})/25,\\
+	\spop{5}{x}&=&\pop{10}{x}-\spop{5}{x+5}.
+\end{eqnarray}
+For the mid ten-year intervals the smoothed five-year populations are
+\begin{eqnarray}
+	\spop{5}{x+5}&=&(-\pop{10}{x-10}+11\,\pop{10}{x}+2\,\pop{10}{x+10})/24\\
+	\spop{5}{x}&=&\pop{10}{x}-\spop{5}{x+5}
+\end{eqnarray}
+For the last ten-year interval the smoothed five-yeaer populations are
+\begin{eqnarray}
+	\spop{5}{x}&=&(-\pop{10}{x-20}+5\,\pop{10}{x-10}+8\,\pop{10}{x})/24\\
+	\spop{5}{x+5}&=&\pop{10}{x}-\spop{5}{x}
+\end{eqnarray}
+The five-year intervals are then split using Sprague.
+</p>
+
+<h2 id="ArriagaStrong">Arriaga's Strong Smoothing</h2>
+<p>
+The age distribution is abridged into five-year intervals. In the mid-panel ten-year populations are smoothed using
+\begin{equation}
+	\spop{10}{x}=(\pop{10}{x-10}+2\,\pop{10}{x}+\pop{10}{x+10})/4.
+\end{equation}
+The ten-year intervals are then divided into five-year intervals using Arriaga's light smoothing method.
+</p>
+
+<h2 id="UnitedNations">United Nations</h2>
+<p>
+The age distribution is abridged into five-year intervals and then smoothed using
+\begin{equation}
+	\spop{5}{x}=(-\pop{5}{x-10}+4\,\pop{5}{x-5}+10\,\pop{5}{x}+4\,\pop{5}{x+5}-\pop{5}{x+10})/16
+\end{equation}
+for \(10\le x\le \maxage-10\). The five-year intervals are then split using Sprague.
+</p>

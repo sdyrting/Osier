@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SDYearsLived</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>SDYearsLived</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\sdssf}{L^+}
+\newcommand{\sdsfrac}{l^+}
+\newcommand{\cause}{\alpha}
+\)
+
+<div id="section">
+<h2>SDYearsLived(MortHandle,Cause,Age,[AgeInterval])</h2>
+<p>Returns the cause-specific single-decrement person-years lived for age interval [Age,Age+AgeInterval). MortHandle is a <a href="Mortality.html#dratios">multiple decrement mortality</a>. If AgeInterval is not specified then it defaults to 1.0. Person-years lived \(_n \sdssf_x\) from Age \(x\) for AgeInterval \(n\) is given by the integral of the <a href="SDSurvFrac.html">cause-specific single-decrement survival fraction</a>
+\begin{equation}
+_n \sdssf_{\cause x} = \int_x ^{x+n} \sdsfrac_\cause(a) da
+\end{equation}
+Cause is a comma-separated list of cause codes, possibly prefixed by '~' to denote the complement.
+</p>
+
+
+</div>
+</body>
+</html>

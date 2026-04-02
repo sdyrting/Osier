@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PTOPALS</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>PTOPALS</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+\(
+\newcommand{\pen}{\lambda}
+\newcommand{\minage}{\alpha}
+\newcommand{\maxage}{\beta}
+\newcommand{\knotspacing}{\Delta x}
+\newcommand{\nintern}{n}
+\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
+\)
+
+<div id="section">
+<h2>PTOPALS</h2>
+<p>
+The PTOPALS buildmethod fits fertility rates by representing them relative to a standard fertility curve in terms of a linear P-Spline (see <a href="https://www.researchgate.net/publication/324106633_Penalised_TOPALS_as_a_Tool_for_Expanding_Abridged_Fertility_and_Mortality_Schedules_For_Small_Populations?_sg=ARpcWezO5-OQHBQ2xlwHqDPhV1t-AtLchrkRoxV3OVx3F5in6ewLi-MXxwbqDSe0rn40W4QBfI9RhcR-FM_o-ngvTJMLoxXHhxUjLwIR.wda9IslfIetDuoWZImgZezrYWIZ9p-4sjZiKuBh07SdjSYPWzt39nEoH2g1QlorCl0OQJ-gG2XXRBcVQWkNPiA">Dyrting 2018</a>).
+</p>
+
+<h2>ExtraInfo</h2>
+<p>
+The user must specify the population at risk and the standard fertility using an extrainfo string of the form PTOPALS:PInfo,SInfo[,ExtraInfo]. If PInfo is a number then the population in each age interval of the fertility curve is flat at this value. If it is a string then it specifies the name of a <a href="../PCurves/PCurves.html">PCURVE</a> object. If SInfo is a number then the standard fertility rates are flat at this value. If it is a string then it specifies the name of the standard <a href="Fertility.html">FERTILITY</a> object. ExtraInfo is an optional  comma-separated list of quoted strings of the form "<i>Parameter</i>=<i>Value</i>" which can be used to change the method's default settings.
+</p>
+
+<h2>Degree</h2>
+<p>
+By default PTOPALS uses linear B-Splines. The degree of splines can be changed with the extrainfo string "Degree=<i>m</i>".
+</p>
+
+<h2>Order</h2>
+<p>
+By default PTOPALS uses a first order penalty. The order can be changed with the extrainfo string "Order=<i>k</i>".
+</p>
+
+<h2>Knots</h2>
+<p>
+There are two ways to set the B-Spline knots. The first way is to set the minimum and maximum ages using extrainfo strings  "MinAge=\(\minage\)" and "MaxAge=\(\maxage\)" respectively. The internal points are then equally spaced upwards from \(\minage\) as follows 
+\begin{eqnarray}
+	x_i&=&\minage+\knotspacing\times i,\quad i=1,\ldots,\nintern\\
+\end{eqnarray}
+where 
+\begin{equation}
+	\nintern=\ceil{\frac{\maxage-\minage}{\knotspacing}}-1
+\end{equation}
+and the spacing  \(\knotspacing\) is specified by the extrainfo string "KnotSpacing=\(\knotspacing\)". The default values are \(\minage=0\) and \(\maxage=55\) and  \(\knotspacing=2\). The second way is to set the knots explicitly using the extrainfo string "Knots=\(\minage\)|\(x_1\)|\(x_2\)|\(\ldots\)|\(x_\nintern\)|\(\maxage\)".
+</p>
+
+<h2>Penalty</h2>
+<p>
+By default PTOPALS automatically calculates the penalty \(\pen\) by minimizing the Bayesean information criterion ("Penalty=BIC"). An alternative is the Akaike information criterion ("Penalty=AIC").
+The penalty can also be specified explicitly using "Penalty=\(\pen\)".
+</p>
+</div>
+</body>
+</html>

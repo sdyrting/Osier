@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SaveObjs</title>
+<link rel="stylesheet" type="text/css" href="../css/willow.css">
+<link rel="stylesheet" href="../css/willow_mod.css">
+<script src="../scripts/wloNavMenu.js"></script>
+</head>
+<body>
+<div id="header">
+<h1>SaveObjs</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu()</script>
+
+<div id="section">
+<h2>SaveObjs(Handles, ObjectTypes, FileName, [Append])</h2>
+<p>Saves objects to a text file in a format that is suitable for loading using 
+<a href="LoadObjs.html">LoadObjs</a>.
+Handles is an array of object names. The type of the 
+objects is specified by ObjectTypes. This can be done by entering only one object type in which case 
+all objects handles should be of that type, otherwise individual types can be entered in an array that 
+has a one to one correspondence with Handles. FileName is the full pathname of the file to save the 
+objects to. The Append parameter is optional. If it is not specified then it defaults to 0 which 
+deletes the current contents of the file before saving the objects. If Append is non-zero then the 
+objects are appended to the file. </p>
+</div>
+
+</body>
+</html>

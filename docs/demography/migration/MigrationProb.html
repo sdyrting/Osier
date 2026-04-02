@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MigrationProb</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>MigrationProb</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\topop}{\alpha}
+\)
+
+<div id="section">
+<h2>MigrationProb(MigrationHandle,Age,[AgeInterval],[ToPop])</h2>
+<p>Returns the migration probability for age interval [Age,Age+AgeInterval). If AgeInterval is not specified it defaults to 1.0. Migration probability \(_n q_x\) is given by the expression
+\begin{equation}
+_n q_x = \frac{_n d_x}{l(x)}
+\end{equation}
+where \(_n d_x\) is the number of out-migrations from Age \(x\) for AgeInterval \(n\) and \(l(x)\) is the migration survival fraction. The optional argument ToPop is a comma-separated list of population codes possibly prefixed by '~' to denote the complement. If MigrationHandle is a <a href="Migration.html#mratios">multiple transition migration</a> and ToPop is specified then the function returns the population-specific migration probability
+\begin{equation}
+_n q_{\topop x} = \frac{_n d_{\topop x}}{l(x)},
+\end{equation}
+the probability of migrating to population \(\topop\) in age interval [Age,Age+AgeInterval).
+</p>
+
+<p>
+<div class='clsExcelTableTitle'>MigrationProb</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=100pt>&nbsp;</td>
+  <td width=193pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>MortHandle</td>
+  <td class='clsExcelTableCell2'>NSW-M_MT_ASMP_2005:0</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Age</td>
+  <td class='clsExcelTableCell2'>20</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>[AgeInterval]</td>
+  <td class='clsExcelTableCell2'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>[ToPop]</td>
+  <td class='clsExcelTableCell2'>NT-M</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>MigrationProb</td>
+  <td class='clsExcelTableCellRed'>0.005042277</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+</div>
+</body>
+</html>

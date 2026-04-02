@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MatrixToList</title>
+<link rel="stylesheet" href="../css/willow.css" type="text/css">
+<link rel="stylesheet" href="../css/willow_mod.css">
+<script src="../scripts/wloNavMenu.js"></script>
+</head>
+<body>
+<div id="header">
+<h1>MatrixToList</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu()</script>
+
+<div id="section">
+<h2>MatrixToList(RowLabels,ColumnLabels,Matrix)</h2>
+<p>
+Constructs a list from a matrix with labelled rows and columns. The inverse of <a href="ListToMatrix.html">ListToMatrix</a>.
+</p>
+
+<p>
+<div class='clsExcelTableTitle'>Matrix</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>Cat1</td>
+  <td class='clsExcelTableCell4'>Cat2</td>
+  <td class='clsExcelTableCell4'>Cat3</td>
+  <td class='clsExcelTableCell4'>Cat4</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Exp1</td>
+  <td class='clsExcelTableCell2'>8.3</td>
+  <td class='clsExcelTableCell2'>8.9</td>
+  <td class='clsExcelTableCell2'>0.2</td>
+  <td class='clsExcelTableCell2'>6.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Exp2</td>
+  <td class='clsExcelTableCell2'>4.6</td>
+  <td class='clsExcelTableCell2'>6.6</td>
+  <td class='clsExcelTableCell2'>0.6</td>
+  <td class='clsExcelTableCell2'>9.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Exp3</td>
+  <td class='clsExcelTableCell2'>5.1</td>
+  <td class='clsExcelTableCell2'>1.7</td>
+  <td class='clsExcelTableCell2'>3.9</td>
+  <td class='clsExcelTableCell2'>4.9</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Exp4</td>
+  <td class='clsExcelTableCell2'>9.3</td>
+  <td class='clsExcelTableCell2'>7.3</td>
+  <td class='clsExcelTableCell2'>3</td>
+  <td class='clsExcelTableCell2'>1.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Exp5</td>
+  <td class='clsExcelTableCell2'>1.3</td>
+  <td class='clsExcelTableCell2'>4.5</td>
+  <td class='clsExcelTableCell2'>4.2</td>
+  <td class='clsExcelTableCell2'>0.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Exp6</td>
+  <td class='clsExcelTableCell2'>9.1</td>
+  <td class='clsExcelTableCell2'>9.2</td>
+  <td class='clsExcelTableCell2'>8.4</td>
+  <td class='clsExcelTableCell2'>6.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Exp7</td>
+  <td class='clsExcelTableCell2'>0.3</td>
+  <td class='clsExcelTableCell2'>9.7</td>
+  <td class='clsExcelTableCell2'>4</td>
+  <td class='clsExcelTableCell2'>1.8</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Exp8</td>
+  <td class='clsExcelTableCell2'>0</td>
+  <td class='clsExcelTableCell2'>9.2</td>
+  <td class='clsExcelTableCell2'>6.3</td>
+  <td class='clsExcelTableCell2'>2.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+<p>
+<div class='clsExcelTableTitle'>List</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp1</td>
+  <td class='clsExcelTableCellRed'>Cat1</td>
+  <td class='clsExcelTableCellRed'>8.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp1</td>
+  <td class='clsExcelTableCellRed'>Cat2</td>
+  <td class='clsExcelTableCellRed'>8.9</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp1</td>
+  <td class='clsExcelTableCellRed'>Cat3</td>
+  <td class='clsExcelTableCellRed'>0.2</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp1</td>
+  <td class='clsExcelTableCellRed'>Cat4</td>
+  <td class='clsExcelTableCellRed'>6.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp2</td>
+  <td class='clsExcelTableCellRed'>Cat1</td>
+  <td class='clsExcelTableCellRed'>4.6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp2</td>
+  <td class='clsExcelTableCellRed'>Cat2</td>
+  <td class='clsExcelTableCellRed'>6.6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp2</td>
+  <td class='clsExcelTableCellRed'>Cat3</td>
+  <td class='clsExcelTableCellRed'>0.6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp2</td>
+  <td class='clsExcelTableCellRed'>Cat4</td>
+  <td class='clsExcelTableCellRed'>9.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp3</td>
+  <td class='clsExcelTableCellRed'>Cat1</td>
+  <td class='clsExcelTableCellRed'>5.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp3</td>
+  <td class='clsExcelTableCellRed'>Cat2</td>
+  <td class='clsExcelTableCellRed'>1.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp3</td>
+  <td class='clsExcelTableCellRed'>Cat3</td>
+  <td class='clsExcelTableCellRed'>3.9</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp3</td>
+  <td class='clsExcelTableCellRed'>Cat4</td>
+  <td class='clsExcelTableCellRed'>4.9</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp4</td>
+  <td class='clsExcelTableCellRed'>Cat1</td>
+  <td class='clsExcelTableCellRed'>9.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp4</td>
+  <td class='clsExcelTableCellRed'>Cat2</td>
+  <td class='clsExcelTableCellRed'>7.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp4</td>
+  <td class='clsExcelTableCellRed'>Cat3</td>
+  <td class='clsExcelTableCellRed'>3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp4</td>
+  <td class='clsExcelTableCellRed'>Cat4</td>
+  <td class='clsExcelTableCellRed'>1.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp5</td>
+  <td class='clsExcelTableCellRed'>Cat1</td>
+  <td class='clsExcelTableCellRed'>1.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp5</td>
+  <td class='clsExcelTableCellRed'>Cat2</td>
+  <td class='clsExcelTableCellRed'>4.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp5</td>
+  <td class='clsExcelTableCellRed'>Cat3</td>
+  <td class='clsExcelTableCellRed'>4.2</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp5</td>
+  <td class='clsExcelTableCellRed'>Cat4</td>
+  <td class='clsExcelTableCellRed'>0.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp6</td>
+  <td class='clsExcelTableCellRed'>Cat1</td>
+  <td class='clsExcelTableCellRed'>9.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp6</td>
+  <td class='clsExcelTableCellRed'>Cat2</td>
+  <td class='clsExcelTableCellRed'>9.2</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp6</td>
+  <td class='clsExcelTableCellRed'>Cat3</td>
+  <td class='clsExcelTableCellRed'>8.4</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp6</td>
+  <td class='clsExcelTableCellRed'>Cat4</td>
+  <td class='clsExcelTableCellRed'>6.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp7</td>
+  <td class='clsExcelTableCellRed'>Cat1</td>
+  <td class='clsExcelTableCellRed'>0.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp7</td>
+  <td class='clsExcelTableCellRed'>Cat2</td>
+  <td class='clsExcelTableCellRed'>9.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp7</td>
+  <td class='clsExcelTableCellRed'>Cat3</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp7</td>
+  <td class='clsExcelTableCellRed'>Cat4</td>
+  <td class='clsExcelTableCellRed'>1.8</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp8</td>
+  <td class='clsExcelTableCellRed'>Cat1</td>
+  <td class='clsExcelTableCellRed'>0</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp8</td>
+  <td class='clsExcelTableCellRed'>Cat2</td>
+  <td class='clsExcelTableCellRed'>9.2</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp8</td>
+  <td class='clsExcelTableCellRed'>Cat3</td>
+  <td class='clsExcelTableCellRed'>6.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Exp8</td>
+  <td class='clsExcelTableCellRed'>Cat4</td>
+  <td class='clsExcelTableCellRed'>2.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+</div>
+</body>
+</html>

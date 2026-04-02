@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hermite Force</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Hermite Force</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+\(
+\newcommand{\hermiteforce}{\texttt{HERMITE_FORCE}\ }
+\newcommand{\force}{\mu}
+\newcommand{\sfrac}{l}
+\newcommand{\ssf}{L}
+\newcommand{\slope}{\beta}
+\newcommand{\level}{\bar{\force}}
+\newcommand{\xmid}{\bar{x}_i}
+\newcommand{\sfmid}{\bar{\sfrac}}
+\newcommand{\dx}{\Delta x}
+\newcommand{\dssf}{\Delta\ssf}
+\newcommand{\slopesign}{\omega}
+\newcommand{\ifunc}[2]{I_{#1}\left(#2\right)}
+\newcommand{\nmax}{N}
+\newcommand{\nifunc}[2]{\tilde{I}_{#1}\left(#2\right)}
+\)
+
+<div id="section">
+<h2>Hermite Force</h2>
+<p>In this build method the force of mortality is a piecewise linear function of age. The level is set to match the change in the survival fraction across an age interval and the slope is set to match person-years lived. Let there be a set of survival fractions \(\sfrac_i\) and person-years lived
+\begin{equation}
+	\ssf_i=\int_0^{x_i} \sfrac(a)da
+\end{equation}
+at ages \(x_i\) for \(i=0,\ldots,n-1\). The force of mortality at age \(x\in[x_i,x_{i+1})\) takes the form
+\begin{equation}
+	\force(x) = \frac{\alpha}{\dx}+\slope\dx \left(A-\frac{1}{2}\right),
+\end{equation}
+where
+\begin{equation}
+	\alpha=\log\left(\frac{\sfrac_i}{\sfrac_{i+1}}\right),\quad A=\frac{x-x_i}{x_{i+1}-x_i},\quad \dx=x_{i+1}-x_i\\
+.
+\end{equation}
+Let
+\begin{equation}
+	\dssf=\ssf_{i+1}-\ssf_i
+\end{equation}
+then the parameter
+\begin{equation}
+	z=\dx\sqrt{|\slope|/2},\quad
+\end{equation}
+is determined by the condition
+\begin{equation}
+\label{eqn:dssf}
+	\frac{\dssf}{\dx}= \frac{1}{z} \left[\sfrac_{i+1}E_\slopesign\left(\slopesign\frac{\alpha}{2z}+\frac{z}{2}\right)-
+							\sfrac_i E_\slopesign\left(\slopesign\frac{\alpha}{2z}-\frac{z}{2}\right)\right]
+\end{equation}
+where
+\begin{equation}
+	\omega=\left\{\begin{array}{rl}
+			1, & \dssf/\dx > (\sfrac_i-\sfrac_{i+1})/\alpha\\
+			-1, & \dssf/\dx <(\sfrac_i-\sfrac_{i+1})/\alpha
+			\end{array}
+			\right.
+\end{equation}
+and
+\begin{equation}
+	E_\slopesign(x) = e^{\slopesign x^2} \int_0^x e^{-\slopesign t^2} dt
+\end{equation}
+\(E_\slopesign(x)\) is related to the error function for \(\slopesign =1\) and the Dawson function for \(\slopesign=-1\). 
+After solving for \(z\) the survival fraction and number of person-years lived for any \(x\in [x_i,x_{i+1})\) are given by the expressions
+\begin{equation}
+	\sfrac(x) = \sfrac_i \exp\left(-\alpha A+\slopesign z^2 A(1-A)\right)
+\end{equation}
+and
+\begin{equation}
+	\ssf(x)=\ssf_i+\frac{\dx}{z} \left[
+			\sfrac(x) E_\slopesign\left(\slopesign\frac{\alpha}{2z}+\left(A-\frac{1}{2}\right)z\right)
+			-\sfrac_i E_\slopesign\left(\slopesign\frac{\alpha}{2z}-\frac{z}{2}\right)\right]
+\end{equation}
+</p>
+
+<p>
+Unlike other build methods \(\hermiteforce\) requires both a frequency measure of mortality (death rate, death probability, survival fraction) and a duration measure (person-years lived, person-years lived after, life expectancy or separation factor). This extra information is necessary when one wants to reproduce both survival fraction and life expectancy data in a published life table or when one wants to convert death rates into death probabilities using a specified set of separation factors. The duration measure data is given in a RESULTS object. The name of the results object must be given in the build method extrainfo string.
+</p>
+
+<h2>Solving For \(z\)</h2>
+<p>
+If \(z\) is small then Equation\(~\ref{eqn:dssf}\) can be solved using the expansion
+\begin{equation}
+	2\frac{\dssf}{\dx}=\sqrt{\sfrac_i . \sfrac_{i+1}}\sum_{n\ge 0} 
+		\frac{(\omega z^2/4)^n}{n!}\ifunc{n}{\frac{\alpha}{2}}
+\end{equation}
+where
+\begin{equation}
+	\ifunc{n}{x} := \int_{-1}^1 (1-t^2)^n e^{xt} dt .
+\end{equation}
+Rearranging terms gives the iteration
+\begin{equation}
+\label{eqn:zstart}
+	\frac{\omega z^2}{4} \leftarrow \frac{1}{\sqrt{\sfrac_i \sfrac_{i+1}}}
+		\frac{2\frac{\dssf}{\dx}-\sqrt{\sfrac_i\sfrac_{i+1}}\ifunc{0}{\frac{\alpha}{2}}}{%
+			\sum_{n\ge 1} \frac{(\omega z^2/4)^{n-1}}{n!}%
+				\ifunc{n}{\frac{\alpha}{2}}}			
+\end{equation}
+which converges quickly for small \(z\) from the starting point \(z=0\). If \(z\) is not small then the above iteration can be used to set a starting point for a solution of Equation\(~\ref{eqn:dssf}\) using Newton. Derivatives can be found without much additional computation using the identity
+\begin{equation}
+	E_\slopesign '(x)=2\slopesign x E_\slopesign (x)+ 1 .
+\end{equation}
+</p>
+
+<h2>Calculating \(\ifunc{n}{x}\)</h2>
+<p>
+The iteration\(~(\ref{eqn:zstart})\) requires \(\ifunc{n}{x}\) for \(n=0,1,\ldots,\nmax\) for some suitably large \(\nmax\). If 
+\(\ifunc{\nmax-1}{x}\) and \(\ifunc{\nmax}{x}\) are known then remaining values can be calculated using the stable downwards recurrence
+\begin{equation}
+\label{eqn:ifunc_recd}
+	\ifunc{n}{x}=\left(1+\frac{1}{2(n+1)}\right) \ifunc{n+1}{x}+\frac{x^2}{4(n+1)(n+2)}\ifunc{n+2}{x}
+\end{equation}
+Let \(\nifunc{n}{x}\) be the normalized function
+\begin{equation}
+	\nifunc{n}{x}=\frac{\ifunc{n}{x}}{\ifunc{N}{x}}
+\end{equation}
+The \(\nifunc{n}{x}\)'s also satisfy the recurrence \((\ref{eqn:ifunc_recd})\) because it is linear. By definition 
+\begin{equation}
+	\nifunc{\nmax}{x}=1 .
+\end{equation}
+And equation~(\ref{eqn:ifunc_recd}) can be used to prove the continued fraction representation
+\begin{equation}
+	\nifunc{\nmax-1}{x}^{-1}=\frac{1}{%
+		1+\frac{1}{2\nmax}+\frac{\frac{x^2}{4\nmax(\nmax+1)}}{%
+			1+\frac{1}{2(\nmax+1)}+\frac{\frac{x^2}{4(\nmax+1)(\nmax+2)}}{%
+				1+\ldots}
+	}}
+\end{equation}
+which can be evaluated efficiently using Lentz. With these two starting conditions recurrence can be used to generate all \(\nifunc{n}{x}\) for \(n=\nmax-2,...,0\). Then
+\begin{equation}
+	\ifunc{n}{x}=\ifunc{\nmax}{x}\nifunc{n}{x}
+\end{equation}
+where \(\ifunc{\nmax}{x}\) is determined by the known value at \(n=0\)
+\begin{equation}
+	\ifunc{0}{x}=2 \frac{\sinh(x)}{x}.
+\end{equation}
+</p>
+
+</div>
+</body>
+</html>

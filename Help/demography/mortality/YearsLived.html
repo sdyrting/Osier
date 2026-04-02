@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>YearsLived</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>YearsLived</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>YearsLived(MortHandle,Age,[AgeInterval])</h2>
+<p>Returns the person-years lived for age interval [Age,Age+AgeInterval). If AgeInterval is not specified then it defaults to 1.0. Person-years lived \(_n L_x\) from Age \(x\) for AgeInterval \(n\) is given by the integral of the <a href="SurvFrac.html">survival fraction</a>
+$$
+_n L_x = \int_x ^{x+n} l(a) da
+$$</p>
+
+<p>
+<div class='clsExcelTableTitle'>YearsLived</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=100pt>&nbsp;</td>
+  <td width=176pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>MortHandle</td>
+  <td class='clsExcelTableCell2'>AUS-M_ASDR5Y_2011:7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Age</td>
+  <td class='clsExcelTableCell2'>80</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>[AgeInterval]</td>
+  <td class='clsExcelTableCell2'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>YearsLived</td>
+  <td class='clsExcelTableCellRed'>2.652581984</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+</div>
+</body>
+</html>

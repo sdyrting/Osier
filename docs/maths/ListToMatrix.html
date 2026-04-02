@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ListToMatrix</title>
+<link rel="stylesheet" href="../css/willow.css" type="text/css">
+<link rel="stylesheet" href="../css/willow_mod.css">
+<script src="../scripts/wloNavMenu.js"></script>
+</head>
+<body>
+<div id="header">
+<h1>ListToMatrix</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu()</script>
+
+<div id="section">
+<h2>ListToMatrix(RowLabels,ColumnLabels,Values,[LabelType])</h2>
+<p>
+Constructs a matrix from lists of row labels, column labels and values. The inverse of <a href="MatrixToList.html">MatrixToList</a>. RowLabels is a vector of row label values, ColumnLabels is a vector of column label values, and Values is a vector of matrix elements. The matrix elements are arranged in increasing row and column labels. The optional parameter LabelType specifies how the labels are interpretted. It can take values: 'NUMBER', 'DATE', 'STRING' or 'INTERVAL'. If not specified then it defaults to 'NUMBER'.
+</p>
+
+<p>
+Example: ListToMatrix(RowLablels,ColumnLabels,Values,"DATE")
+<p>
+<div class='clsExcelTableTitle'>Matrix</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=87pt>&nbsp;</td>
+  <td width=119pt>&nbsp;</td>
+  <td width=119pt>&nbsp;</td>
+  <td width=119pt>&nbsp;</td>
+  <td width=119pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>JSOL:20162307</td>
+  <td class='clsExcelTableCell4'>JSOL:20160106</td>
+  <td class='clsExcelTableCell4'>JSOL:20160306</td>
+  <td class='clsExcelTableCell4'>JSOL:20160506</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>25-01-16</td>
+  <td class='clsExcelTableCellRed'>8.3</td>
+  <td class='clsExcelTableCellRed'>8.9</td>
+  <td class='clsExcelTableCellRed'>0.2</td>
+  <td class='clsExcelTableCellRed'>6.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>01-02-16</td>
+  <td class='clsExcelTableCellRed'>4.6</td>
+  <td class='clsExcelTableCellRed'>6.6</td>
+  <td class='clsExcelTableCellRed'>0.6</td>
+  <td class='clsExcelTableCellRed'>9.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>08-02-16</td>
+  <td class='clsExcelTableCellRed'>5.1</td>
+  <td class='clsExcelTableCellRed'>1.7</td>
+  <td class='clsExcelTableCellRed'>3.9</td>
+  <td class='clsExcelTableCellRed'>4.9</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>15-02-16</td>
+  <td class='clsExcelTableCellRed'>9.3</td>
+  <td class='clsExcelTableCellRed'>7.3</td>
+  <td class='clsExcelTableCellRed'>3</td>
+  <td class='clsExcelTableCellRed'>1.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>22-02-16</td>
+  <td class='clsExcelTableCellRed'>1.3</td>
+  <td class='clsExcelTableCellRed'>4.5</td>
+  <td class='clsExcelTableCellRed'>4.2</td>
+  <td class='clsExcelTableCellRed'>0.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>29-02-16</td>
+  <td class='clsExcelTableCellRed'>9.1</td>
+  <td class='clsExcelTableCellRed'>9.2</td>
+  <td class='clsExcelTableCellRed'>8.4</td>
+  <td class='clsExcelTableCellRed'>6.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>07-03-16</td>
+  <td class='clsExcelTableCellRed'>0.3</td>
+  <td class='clsExcelTableCellRed'>9.7</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>1.8</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>14-03-16</td>
+  <td class='clsExcelTableCellRed'>0</td>
+  <td class='clsExcelTableCellRed'>9.2</td>
+  <td class='clsExcelTableCellRed'>6.3</td>
+  <td class='clsExcelTableCellRed'>2.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+</p>
+
+<p>
+<div class='clsExcelTableTitle'>List</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=87pt>&nbsp;</td>
+  <td width=119pt>&nbsp;</td>
+  <td width=119pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>RowLabels</td>
+  <td class='clsExcelTableCell4'>ColumnLabels</td>
+  <td class='clsExcelTableCell4'>Values</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>25-01-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20162307</td>
+  <td class='clsExcelTableCell2'>8.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>25-01-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160106</td>
+  <td class='clsExcelTableCell2'>8.9</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>25-01-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160306</td>
+  <td class='clsExcelTableCell2'>0.2</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>25-01-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160506</td>
+  <td class='clsExcelTableCell2'>6.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>01-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20162307</td>
+  <td class='clsExcelTableCell2'>4.6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>01-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160106</td>
+  <td class='clsExcelTableCell2'>6.6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>01-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160306</td>
+  <td class='clsExcelTableCell2'>0.6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>01-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160506</td>
+  <td class='clsExcelTableCell2'>9.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>08-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20162307</td>
+  <td class='clsExcelTableCell2'>5.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>08-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160106</td>
+  <td class='clsExcelTableCell2'>1.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>08-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160306</td>
+  <td class='clsExcelTableCell2'>3.9</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>08-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160506</td>
+  <td class='clsExcelTableCell2'>4.9</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>15-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20162307</td>
+  <td class='clsExcelTableCell2'>9.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>15-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160106</td>
+  <td class='clsExcelTableCell2'>7.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>15-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160306</td>
+  <td class='clsExcelTableCell2'>3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>15-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160506</td>
+  <td class='clsExcelTableCell2'>1.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>22-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20162307</td>
+  <td class='clsExcelTableCell2'>1.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>22-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160106</td>
+  <td class='clsExcelTableCell2'>4.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>22-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160306</td>
+  <td class='clsExcelTableCell2'>4.2</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>22-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160506</td>
+  <td class='clsExcelTableCell2'>0.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>29-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20162307</td>
+  <td class='clsExcelTableCell2'>9.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>29-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160106</td>
+  <td class='clsExcelTableCell2'>9.2</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>29-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160306</td>
+  <td class='clsExcelTableCell2'>8.4</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>29-02-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160506</td>
+  <td class='clsExcelTableCell2'>6.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>07-03-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20162307</td>
+  <td class='clsExcelTableCell2'>0.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>07-03-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160106</td>
+  <td class='clsExcelTableCell2'>9.7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>07-03-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160306</td>
+  <td class='clsExcelTableCell2'>4</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>07-03-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160506</td>
+  <td class='clsExcelTableCell2'>1.8</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>14-03-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20162307</td>
+  <td class='clsExcelTableCell2'>0</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>14-03-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160106</td>
+  <td class='clsExcelTableCell2'>9.2</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>14-03-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160306</td>
+  <td class='clsExcelTableCell2'>6.3</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>14-03-16</td>
+  <td class='clsExcelTableCell2'>JSOL:20160506</td>
+  <td class='clsExcelTableCell2'>2.1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+
+</div>
+</body>
+</html>

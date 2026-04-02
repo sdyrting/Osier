@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hybrid Density</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Hybrid Density</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>Hybrid Density</h2>
+<p>
+Given a set of populations  \(P_i\) for age intervals \([x_{i-1},x_{i})\) the cumulative population at \(x_i\) is
+$$
+	N_i=\left\{
+		\begin{array}{ll}
+			0,& i=0\\
+			\sum_{k\le i } P_i,&\mathrm{otherwise}
+		\end{array}\right.
+$$
+First calculate the constant age density for each interval
+$$
+	\tilde{p}_i=\frac{N_i-N_{i-1}}{x_i-x_{i-1}}
+$$
+The age density  \(p_i\) at internal points \(x_i\) where \(i=1,\ldots,N-1\) is calculated by linearly interpolating \(\tilde{p}\)
+$$
+	p_i = \tilde{p}_{i+1}\frac{x_i-x_{i-1}}{x_{i+1}-x_{i-1}} + \tilde{p}_i\frac{x_{i+1}-x_i}{x_{i+1}-x_{i-1}}
+$$
+Find \(p_0\) at \(x_0\) and \(p_N\) at \(x_N\) by assuming the age density is linear in age over the end intervals \([x_0,x_1]\) and \([x_{N-1},x_{N}]\)
+$$
+\begin{eqnarray}
+	p_0&=&2\tilde{p}_1 - p_1\\
+	p_N&=& 2\tilde{p}_N - p_{N-1}
+\end{eqnarray}
+$$
+For the internal intervals \([x_{i-1},x_i]\) for \(i=2,\ldots,N-1\) assume age density is quadratic with curvature \(C_i\)
+$$
+	C_i=\frac{12}{(x_i-x_{i-1})^2}\left(\frac{p_i+p_{i-1}}{2}-\tilde{p}_i\right)
+$$
+
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PCLM</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>PCLM</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\pclm}{\texttt{PCLM}}
+\newcommand{\bmat}{B}
+\newcommand{\mmult}{\cdot}
+\newcommand{\bvec}{\theta}
+\newcommand{\nop}{m}
+\newcommand{\pop}{N}
+\newcommand{\opop}{{\tilde{\pop}}}
+\newcommand{\apop}{\pop}
+\newcommand{\loglik}{{\cal L}}
+\newcommand{\ploglik}{\loglik_\pop}
+\newcommand{\res}{y}
+\newcommand{\diff}{D_\order}
+\newcommand{\pen}{\lambda}
+\newcommand{\vmat}{V}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\old}[1]{{\tilde{#1}}}
+\newcommand{\wmat}{W}
+\newcommand{\AIC}{\mathrm{AIC}}
+\newcommand{\dev}{\mathrm{dev}}
+\newcommand{\edim}{\mathrm{dim}}
+\newcommand{\const}{C}
+\newcommand{\trace}{\mathrm{tr}}
+\newcommand{\hatmat}{H}
+\newcommand{\BIC}{\mathrm{BIC}}
+\newcommand{\gmat}{G}
+\newcommand{\qmat}{Q}
+\newcommand{\maxage}{\omega}
+\newcommand{\grad}[1]{\frac{\partial {#1}}{\partial\bvec}}
+\newcommand{\ones}{\iota}
+\newcommand{\order}{k}
+\newcommand{\extrainfo}[1]{\texttt{#1}}
+\newcommand{\exvalue}[1]{\textsl{#1}}
+\newcommand{\xinfoval}[1]{\texttt{#1}}
+\newcommand{\knotspacing}{\Delta x}
+\newcommand{\nintern}{n}
+\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
+\newcommand{\var}{\sigma^2}
+\newcommand{\VarPCurveName}{\textit{VarPCurveName}}
+\newcommand{\maxits}{J}
+\newcommand{\degree}{p}
+\)
+
+<div id="section">
+<h2>PCLM</h2>
+<p>
+We have a set of observed population numbers 
+\begin{equation}
+\opop=\left[\begin{array}{c}
+		\opop_1\\
+		\vdots\\
+		\opop_\nop
+		\end{array}\right]
+\end{equation}
+over \(\nop\) age intervals \([a_i,a_i+n_i)\). The objective is to ungroup the population into single years of age \(\pop_x\), \(x=0,1,2,\ldots,\maxage\) out to a maximum age \(\maxage\). In <a href="https://doi.org/10.1093/aje/kwv020">Rizzi et al (2015)'s</a> Penalised Composite Link Method (PCLM) the ungrouped numbers are expressed in the form
+\begin{equation}
+\label{eqn:pclm}
+	\log\pop_x = \bmat_x\mmult\bvec ,
+\end{equation}
+where \(\bmat_x\) is a row vector of basis splines evaluated at age \(x\), \(\bvec\) is a column vector of B-Spline weights to be determined. The weights are found by maximising the penalised loglikelihood function
+\begin{equation}
+	\loglik(\bvec) = \ploglik(\bvec) - \frac{\pen}{2}\,\bvec'\mmult \diff'\mmult \diff\mmult\bvec 
+\end{equation}
+Where \(\diff\) is the \(k\)-order difference matrix. Assuming the observed population numbers follow a Poisson distribution
+\begin{equation}
+	\ploglik(\bvec)=\ones'\mmult (\opop \log\apop-\apop).
+\end{equation}
+Here \(\ones\) is a vector of ones and \(\apop\) is the vector of \(\nop\) smoothed abridged numbers given in terms of \(\pop_x\) by the sum 
+\begin{equation}
+	_n\apop_a = \sum_{a\le x< a+n} \pop_x .
+\end{equation}
+Assuming \(\loglik(\bvec)\) is maximised at a stationary point we get the following nonlinear equation for \(\bvec\)
+\begin{equation}
+\label{eqn:nonlinear}
+	\gmat'(\bvec)\mmult\vmat\mmult (\opop-\apop)-\pen \diff'\mmult \diff\mmult \bvec=0,
+\end{equation}
+where \(\vmat\) is the identity matrix and \(\gmat(\bvec)\) is the matrix of logarithmic derivatives
+\begin{equation}
+	\gmat(\bvec) = \frac{1}{\apop}\grad{\apop}.
+\end{equation}
+This equation can be solved by iterated linear regressions as follows.
+Given an approximation \(\bar{\bvec}\)  the updated value \(\bvec\) is calculated by solving the linear equation
+\begin{equation}
+\label{eqn:linear}
+	\qmat(\bar{\bvec})\mmult \bvec = b(\bar{\bvec})
+\end{equation}
+where
+\begin{eqnarray}
+	\qmat(\bvec)&=&\gmat'(\bvec)\mmult\wmat(\bvec)\mmult\gmat(\bvec) + \pen \diff'\mmult\diff\\
+	b(\bvec)&=& \gmat'(\bvec)\mmult  (\opop-\apop) + \gmat'(\bvec)\mmult\wmat(\bvec)\mmult\gmat(\bvec)\mmult\bvec
+\end{eqnarray}
+and
+\begin{equation}
+	\wmat(\bvec)=\diag(\apop)\mmult\vmat
+\end{equation}
+</p>
+
+<h2>Extra Information</h2>
+<p>
+The user can alter the default settings of the method using an extrainfo string of the form PCLM:<i>ExtraInfo</i>.  <i>ExtraInfo</i> is an optional  comma-separated list of quoted strings of the form "<i>Parameter</i>=<i>Value</i>".
+</p>
+
+<p>
+<b>Degree</b><br>
+By default PCLM uses cubic B-Splines. The degree of splines can be changed with the extrainfo string "Degree=\(\degree\)".
+</p>
+
+<p>
+<b>Order</b><br>
+By default PCLM uses a second order penalty. The order can be changed with the extrainfo string "Order=\(\order\)".
+</p>
+
+<p>
+<b>Knots</b><br>
+There are two ways to set the B-Spline knots. The first way is to set the maximum age using extrainfo string "MaxAge=\(\maxage\)". The internal points are then equally spaced upwards from \(0\) as follows 
+\begin{eqnarray}
+	x_0&=&0\\
+	x_i &= &x_{i-1}+\knotspacing,\quad i=1,\ldots,\nintern\\
+	x_{\nintern+1}&=&\maxage
+\end{eqnarray}
+where 
+\begin{equation}
+	\nintern=\ceil{\frac{\maxage}{\knotspacing}}-1
+\end{equation}
+and the spacing  \(\knotspacing\) is specified by the extrainfo string "KnotSpacing=\(\knotspacing\)". The default values are \(\maxage=110\) and  \(\knotspacing=2.5\). The second way is to set the knots explicitly using the extrainfo string "Knots=\(x_0\)|\(x_1\)|\(x_2\)|\(\ldots\)|\(x_\nintern\)|\(\maxage\)".
+</p>
+
+<p>
+<b>Penalty</b><br>
+By default PCLM automatically calculates the penalty \(\pen\) by minimising the Bayesean information criterion ("Penalty=BIC"). An alternative is the Akaike information criterion ("Penalty=AIC").
+The penalty can also be specified explicitly using "Penalty=\(\pen\)".
+</p>
+
+<p>
+<b>Error Type</b><br>
+Rizzi et al (2015) orginally modelled the observed population with a Poisson distribution but the method is flexible enough to incorporate alternative assumptions. For example, if the values \(\opop\) are normally distributed with variance \(\var\) then 
+\begin{equation}
+	\ploglik(\bvec)=-\ones'\mmult \frac{1}{2\var}(\opop-\apop)^2 .
+\end{equation}
+The PCLM equations are still valid  with the matrix \(\vmat\) changed from the identity to
+\begin{equation}
+	\vmat=\diag(\apop/\var).
+\end{equation}
+By default PCLM  uses a Poisson distribution ("ErrType=POISSON"). Users can specify a normal distribution by setting "ErrType=NORMAL". 
+</p>
+
+<p>
+<b>Var</b><br>
+When \(\opop\) is modelled by a normal distribution then the variance is set using the extrainfo string "Var=<i>VarPCurveName</i>" where <i>VarPCurveName</i> is the name of a PCURVE object with the age-specific variances in the Numbers column. Alternatively a flat variance \(\beta\) can be specified using "Var=\(\beta\)". By default PCLM uses a flat variance with \(\beta=1000\).
+</p>
+
+<p>
+<b>MaxIts</b><br>
+The number of iterations used to solve for \(\bvec\) can be set using the extrainfo string "MaxIts=\(\maxits\)". The default is \(\maxits=15\).
+
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PSPLINE</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>PSPLINE</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+\(
+\newcommand{\pen}{\lambda}
+\newcommand{\minage}{\alpha}
+\newcommand{\maxage}{\omega}
+\newcommand{\knotspacing}{\Delta x}
+\newcommand{\nintern}{n}
+\newcommand{\ceil}[1]{\left\lceil #1\right\rceil}
+\newcommand{\infotype}{I}
+\)
+
+<div id="section">
+<h2>PSPLINE</h2>
+<p>
+The PSPLINE multi-transition build method smooths migration ratios using quadratic P-Splines (see <a href="https://doi.org/10.1007/s00168-021-01051-4">Dyrting and Taylor 2021</a>).
+</p>
+
+<h2>ExtraInfo</h2>
+<p>
+The user must specify the total number of movers in each age group using an extrainfo string of the form PSPLINE:MInfo[,ExtraInfo]. If MInfo is a number then the number of movers in each age interval of the migration ratios subtable is flat at this value. If it is a string then it specifies the name of a <a href="../PCurves/PCurves.html">PCURVE</a> object. ExtraInfo is an optional  comma-separated list of quoted strings of the form "<i>Parameter</i>=<i>Value</i>" which can be used to change the method's default settings.
+</p>
+
+<h2>Degree</h2>
+<p>
+By default PSPLINE uses quadratic B-Splines. The degree of splines can be changed with the extrainfo string "Degree=<i>m</i>".
+</p>
+
+<h2>Order</h2>
+<p>
+By default PSPLINE uses a first order penalty. The order can be changed with the extrainfo string "Order=<i>k</i>".
+</p>
+
+<h2>Knots</h2>
+<p>
+There are two ways to set the B-Spline knots. The first way is to set the minimum and maximum ages using extrainfo strings  "MinAge=\(\minage\)" and "MaxAge=\(\maxage\)" respectively. The internal points are then equally spaced upwards from \(\minage\) as follows 
+\begin{eqnarray}
+	x_i&=&\minage+\knotspacing\times i,\quad i=1,\ldots,\nintern\\
+\end{eqnarray}
+where 
+\begin{equation}
+	\nintern=\ceil{\frac{\maxage-\minage}{\knotspacing}}-1
+\end{equation}
+and the spacing  \(\knotspacing\) is specified by the extrainfo string "KnotSpacing=\(\knotspacing\)". The default values are \(\minage=0\), \(\maxage=90\) and  \(\knotspacing=3\). The second way is to set the knots explicitly using the extrainfo string "Knots=\(\minage\)|\(x_1\)|\(x_2\)|\(\ldots\)|\(x_\nintern\)|\(\maxage\)".
+</p>
+
+<h2>Penalty</h2>
+<p>
+The P-Spline penalty can be set specified explicitly using "Penalty=\(\pen\). The default value is "Penalty=-1" which signals that the penalty should be calculated automatically by minimizing the information criterion specified by InfoType. A separate penalty can be specified for each ToPop using the extrainfo string "Penalty=\(\pen_1\)|\(\pen_2\)|\(\ldots\)|\(\pen_d\)".
+</p>
+
+<h2>InfoType</h2>
+<p>
+This extrainfo parameter specifies the information criterion used to automatically calculate the penalty. The default method is the Akaike information criterion with corrections ("Penalty=AICC"). Alternatives are the Akaike information criterion ("Penalty=AIC") and the Bayesian information criterion ("Penalty=BIC"). A separate method can be specified for each ToPop using the extrainfo string "InfoType=\(\infotype_1\)|\(\infotype_2\)|\(\ldots\)|\(\infotype_d\)"
+</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SDSurvFrac</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>SDSurvFrac</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\sdsfrac}{l^+}
+\newcommand{\force}{\mu}
+\newcommand{\cause}{\alpha}
+\)
+<div id="section">
+<h2>SDSurvFrac(MortHandle,Cause,Age)</h2>
+<p>Returns the cause-specific single-decrement survival fraction. The single-decrement survival fraction \(\sdsfrac_\cause(x)\) at age \(x\) is related to the cause-specific force of mortality \(\force_\cause(x)\) through the expression
+\begin{equation}
+\sdsfrac_\cause(x) = \exp\left(-\int_0^x \force_\cause(a)da\right)
+\end{equation}
+Cause is a comma-separated list of cause codes, possibly prefixed by '~' to denote the complement.
+</p>
+
+</div>
+</body>
+</html>

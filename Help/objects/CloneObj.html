@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CloneObj</title>
+<link rel="stylesheet" href="../css/willow.css" type="text/css">
+<link rel="stylesheet" href="../css/willow_mod.css">
+<script src="../scripts/wloNavMenu.js"></script>
+</head>
+<body>
+<div id="header">
+<h1>CloneObj</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu()</script>
+</div>
+
+<div id="section">
+<h2>CloneObj([NewHandle], Handle, ObjectType, [Body], [TableName], [TableBody], [TableName2],[TableBody2],...)</h2>
+<p>
+Copies an object with the option of modifying its body and adding or dropping up to five subtables. Body and subtables are specified as entire arrays instead of as a vector of property names and an array of property values as is done in <a href="CreateObj.html">CreateObj</a>. Body contains the array of property and values to add or modify. TableBody is the subtable to add to the new object. If TableName is specified but TableBody is not then the entire subtable is dropped from the new object. NewHandle is optional. If not specified it defaults to Handle.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Births</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Births</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>Births(FertHandle,PCurveHandle,[Epsilon])</h2>
+<p>Returns the number of births per annum for a population with fertility FertHandle and denstiy <a href="../pcurves/PCurves.html">PCurveHandle</a>. In terms of the fertiliy rate \(f(x)\) and population density \(p(x)\) the number of births \(B\) is
+$$
+B=\int_\alpha^\beta f(x) p(x) dx
+$$
+The integral is calculated numerically with an accuracy controlled by the optional parameter Epsilon. If not specified it defaults to 0.000001.</p>
+
+<p>
+<div class='clsExcelTableTitle'>Births</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=102pt>&nbsp;</td>
+  <td width=172pt>&nbsp;</td>
+  <td width=153pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>FertHandle</td>
+  <td class='clsExcelTableCell2'>AUS-F_ASFR_2011:2</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>PCurveHandle</td>
+  <td class='clsExcelTableCell2'>AUS-F_5Y_2011:5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Births</td>
+  <td class='clsExcelTableCellRed'>301870.5274</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+<p>
+<div class='clsExcelTableTitle'>PCurve</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=102pt>&nbsp;</td>
+  <td width=172pt>&nbsp;</td>
+  <td width=153pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>Handle</td>
+  <td class='clsExcelTableCellGreen'>AUS-F_5Y_2011:5</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>Name</td>
+  <td class='clsExcelTableCell2'>AUS-F_5Y_2011:4</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>Type</td>
+  <td class='clsExcelTableCell2'>PCURVE</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>Population</td>
+  <td class='clsExcelTableCell2'>AUS-F</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>Date</td>
+  <td class='clsExcelTableCell2'>20110630</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>BuildMethod</td>
+  <td class='clsExcelTableCell2'>HYBRID_EXPONENTIAL</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>Source</td>
+  <td class='clsExcelTableCell2'>ABS</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>Numbers</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>Age</td>
+  <td class='clsExcelTableCell4'>Number</td>
+  <td class='clsExcelTableCell4'>Use</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>0</td>
+  <td class='clsExcelTableCell2'>709587</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>5</td>
+  <td class='clsExcelTableCell2'>675429</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>10</td>
+  <td class='clsExcelTableCell2'>676322</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>15</td>
+  <td class='clsExcelTableCell2'>706860</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>20</td>
+  <td class='clsExcelTableCell2'>788193</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>25</td>
+  <td class='clsExcelTableCell2'>817086</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>30</td>
+  <td class='clsExcelTableCell2'>766950</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>35</td>
+  <td class='clsExcelTableCell2'>791706</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>40</td>
+  <td class='clsExcelTableCell2'>800496</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>45</td>
+  <td class='clsExcelTableCell2'>777690</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>50</td>
+  <td class='clsExcelTableCell2'>754436</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>55</td>
+  <td class='clsExcelTableCell2'>673924</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>60</td>
+  <td class='clsExcelTableCell2'>614802</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>65</td>
+  <td class='clsExcelTableCell2'>480007</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>70</td>
+  <td class='clsExcelTableCell2'>370375</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>75</td>
+  <td class='clsExcelTableCell2'>299930</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>80</td>
+  <td class='clsExcelTableCell2'>253460</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>85</td>
+  <td class='clsExcelTableCell2'>264537</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+</div>
+</body>
+</html>

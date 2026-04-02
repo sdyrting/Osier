@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Beta</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Beta</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\mean}{\nu}
+\newcommand{\var}{\tau^2}
+\)
+
+<div id="section">
+<h2>Beta</h2>
+<p>
+Fit fertility rates with a Beta density
+$$
+f(x)=R \frac{\Gamma(A+B)}{\Gamma(A)\Gamma(B)}(\beta-\alpha)^{-(A+B-1)} (x-\alpha)^{A-1} (\beta-x)^{B-1},\quad
+	\alpha< x< \beta
+$$
+where
+\begin{eqnarray}
+	B&=&\left[\frac{(\mean-\alpha)(\beta-\mean)}{\var}-1\right]\frac{\beta-\mean}{\beta-\alpha}\\
+	A&=&B\,\frac{\mean-\alpha}{\beta-\mean}
+\end{eqnarray}
+and \(\mean\) is the mean and \(\var\) is the variance.
+The parameters \(R\), \(\alpha\), \(\beta\), \(\mean\), and \(\var\) are chosen to minimize the square of the absolute error in fertility rates. 
+</p>
+</div>
+</body>
+</html>

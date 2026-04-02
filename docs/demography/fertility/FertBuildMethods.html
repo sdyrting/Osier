@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fertility Build Methods</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+<!--
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+-->
+</head>
+<body>
+
+<div id="header">
+<h1>Fertility Build Methods</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<!--<h2>Heading</h2>-->
+<p>The property BuildMethod specifies the method that is used to build a complete fertility curve from a finite set of age-specific fertility rates. The table below gives the BuildMethods currently supported.
+<style>
+th, td {
+	text-align:left;
+}
+</style>
+<table>
+	<tr>
+	<th>BuildMethod</th>
+	<th>Description</th>
+	</tr>
+	<tr>
+	<td><a href="ConstantFertBuildMethod.html">CONSTANT_FERT</a></td>
+	<td>Between age nodes the fertility rate is constant</td>
+	</tr>
+	<tr>
+	<td><a href="QuadraticFertBuildMethod.html">HFD</a></td>
+	<td>Between age nodes the transformed fertility rate is a quadratic function of age with curvature continuous across age nodes. This is the method used by the Human Fertility Database.</td>
+	</tr>
+	<tr>
+	<td><a href="HybridFertBuildMethod.html">HYBRID_FERT</a></td>
+	<td>Between age nodes the transformed fertility rate is a quadratic function of age. Fertility rate does not vary as much as for HFD but curvature is discontinuous across nodes.</td>
+	</tr>
+	<tr>
+	<td><a href="CoaleTrussellFertBuildMethod.html">COALE_TRUSSELL</a></td>
+	<td>Fit fertility rates using the 4-parameter Coale-Trussell model.</td>
+	</tr>
+	<tr>
+	<td><a href="GammaFertBuildMethod.html">GAMMA</a></td>
+	<td>Fit fertility rates using a transformed Gamma functions.</td>
+	</tr>	
+	<tr>
+	<td><a href="HadwigerFertBuildMethod.html">HADWIGER</a></td>
+	<td>Fit fertility rates using Hadwiger's 4-parameter model.</td>
+	</tr>
+	<tr>
+	<td><a href="QuadraticSplineFertBuildMethod.html">QUADRATIC_SPLINE</a></td>
+	<td>Fit fertility rates using Schmertmann's 4-parameter piecewise quadratic model.</td>
+	</tr>
+	<tr>
+	<td><a href="CalibratedSplineFertBuildMethod.html">CALIBRATED_SPLINE</a></td>
+	<td>Fit fertility rates with B-splines to maximise projection onto a calibrated set of fertility shapes.</td>
+	</tr>
+	<tr>
+	<td><a href="BeersFertBuildMethod.html">BEERS</a></td>
+	<td>Fertitilty rates are aggregated into five-years intervals and then split using Beers method.</td>
+	</tr>
+	<tr>
+	<td><a href="CalibratedSplineFertBuildMethod.html">HFC</a></td>
+	<td>Fertility rates are split into single-year intervals using CALIBRATED_SPLINE, negative rates are replaced with zeros, and all rates are then rescaled so that the total fertilty rate of the original curve is preserved. This is the method used by the Human Fertility Collection.</td>
+	</tr>
+	<tr>
+	<td><a href="BrassFertBuildMethod.html">BRASS</a></td>
+	<td>Fertility rates are fitted using the Brass relational fertility model</td>
+	</tr>
+	<tr>
+	<td><a href="BetaFertBuildMethod.html">BETA</a></td>
+	<td>Fit fertility rate using a parametric model based on the Beta function</td>
+	</tr>
+	<tr>
+	<td><a href="HadwigerMixFertBuildMethod.html">HADWIGER_MIX</a></td>
+	<td>Fit fertility rates using Chandola, Coleman and Hiorns mixture Hadwiger function</td>
+	</tr>
+	<tr>
+	<td><a href="PeristeraKostakiFertBuildMethod.html">PERISTERA_KOSTAKI</a></td>
+	<td>Peristera and Kostaki's Adjusted Model 2</td>
+	</tr>
+	<tr>
+	<td><a href="LPolyFertBuildMethod.html">KERNEL_REGRESSION</a></td>
+	<td>A non-parametric fit using Kernel regression</td>
+	</tr>
+	<tr>
+	<td><a href="SVMFertBuildMethod.html">SVM</a></td>
+	<td>A non-parametric fit using Support Vector Machine regression</td>
+	</tr>
+	<tr>
+	<td><a href="SmoothedASFRFertBuildMethod.html">SMOOTHED_ASFR</a></td>
+	<td>A non-parametric fit using P-Splines</td>
+	</tr>
+	<tr>
+	<td><a href="PTopalsFertBuildMethod.html">PTOPALS</a></td>
+	<td>A relational model that builds the fertility curve using TOPALS and P-Splines</td>
+	</tr>
+	<tr>
+	<td><a href="PeristeraKostaki6FertBuildMethod.html">PERISTERA_KOSTAKI6</a></td>
+	<td>Peristera and Kostaki's Model 2</td>
+	</tr>
+	<tr>
+	<td><a href="WeibullMixFertBuildMethod.html">WEIBULL_MIX</a></td>
+	<td>Fit fertility rates using Bermudez, Blanquero, Hernandez and Planelles' Weibull mixture function</td>
+	</tr>
+
+</table>
+</p>
+</div>
+</body>
+</html>

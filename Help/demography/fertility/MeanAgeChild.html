@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MeanAgeChild</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>MeanAgeChild</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>MeanAgeChile(FertHandle,[Epsilon])</h2>
+\(\newcommand{\MAC}{\mathrm{MAC}}\)
+\(\newcommand{\TFR}{\mathrm{TFR}}\)
+<p>Returns the mean age at childbearing \(\MAC\) for fertility handle FertHandle
+$$
+\MAC= \frac{1}{\TFR}\int_\alpha^\beta a f(a) da
+$$</p>
+where \(\TFR\) is the <a href="TotalFertRate.html">total fertility rate</a>. The optional parameter Epsilon controls the accuracy of numerical calculation of the integral. If not specified it defaults to 0.000001.
+</div>
+</body>
+</html>

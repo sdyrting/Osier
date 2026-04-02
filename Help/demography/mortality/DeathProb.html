@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DeathProb</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>DeathProb</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\cause}{\alpha}
+\)
+
+<div id="section">
+<h2>DeathProb(MortHandle,Age,[AgeInterval],[Cause])</h2>
+<p>Returns the death probability for age interval [Age,Age+AgeInterval). If AgeInterval is not specified it defaults to 1.0. Death probability \(_n q_x\) given by the expression
+\begin{equation}
+_n q_x = \frac{_n d_x}{l(x)}
+\end{equation}
+where \(_n d_x\) is the <a href="Deaths.html">number of deaths</a> from Age \(x\) for AgeInterval \(n\) and \(l(x)\) is the <a href="SurvFrac.html">survival fraction</a>. The optional argument Cause is a comma-separated list of cause codes possibly prefixed by '~' to denote the complement. If MortHandle is a <a href="Mortality.html#dratios">multiple decrement mortality</a> and Cause is specified then the function returns the cause-specific death probability
+\begin{equation}
+_n q_{\cause x} = \frac{_n d_{\cause x}}{l(x)},
+\end{equation}
+the probability of dying from cause \(\cause\) in age interval [Age,Age+AgeInterval).
+</p>
+
+<p>
+<div class='clsExcelTableTitle'>DeathProb</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=100pt>&nbsp;</td>
+  <td width=176pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>MortHandle</td>
+  <td class='clsExcelTableCell2'>AUS-M_ASDR5Y_2011:7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Age</td>
+  <td class='clsExcelTableCell2'>80</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>[AgeInterval]</td>
+  <td class='clsExcelTableCell2'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>DeathProb</td>
+  <td class='clsExcelTableCellRed'>0.28829183</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+</div>
+</body>
+</html>

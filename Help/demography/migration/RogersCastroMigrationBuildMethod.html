@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rogers-Castro</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Rogers-Castro</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+\(
+\newcommand{\rogerscastro}{\texttt{ROGERS_CASTRO}}
+\newcommand{\rogerscastroseven}{\texttt{ROGERS_CASTRO7}}
+\newcommand{\migprob}{q}
+\newcommand{\omigprob}{\tilde{\migprob}}
+\newcommand{\eqnote}[1]{\mbox{(#1)}}
+\newcommand{\FitError}{\mathit{Error}}
+\newcommand{\weight}{N}
+\newcommand{\sse}{{\cal L}}
+\newcommand{\extrainfo}[1]{#1}
+\newcommand{\exvalue}[1]{\textit{#1}}
+\)
+
+<div id="section">
+<h2>Rogers-Castro</h2>
+<p>
+This migration build method fits migration probabilities with the parametric function
+\begin{equation}
+	\begin{array}{lcll}
+	\migprob_x &=&a_1 \exp(-\alpha_1 x)&\eqnote{childhood}\\
+	&&+a_2\exp\left(-\alpha_2(x-\mu_2)-e^{-\lambda_2(x-\mu_2)}\right)&\eqnote{labor force}\\
+	&&+a_3\exp\left(-\alpha_3(x-\mu_3)-e^{-\lambda_3(x-\mu_3)}\right)&\eqnote{retirement}\\
+	&&+a_4\exp\left(\alpha_4 x\right)&\eqnote{elderly}\\
+	&&+c&\eqnote{constant}
+	\end{array}
+\end{equation}
+The first term describes the decrease in migration probabilities from the first year of life. The second term describes the rapid increase in migration in the late teens and the subsequent gentle decay as adults enter and become established in the the labour force. The third term descibes the increase and subsequent decay in migration as adults retire. The forth term describes the increase in migration of the elderly. The last term describes the background level of migration, independent of age. The ROGERS_CASTRO7 build method is a special case of ROGERS_CASTRO without the retirement and elderly terms.</p>
+
+<h2>ExtraInfo</h2>
+<p>Fitting is done using a nonlinear optimization routine. Its default behaviour can be changed by appending an extrainfo string to the buildmethod value, ROGERS_CASTRO:<i>ExtraInfo</i>. Here <i>ExtraInfo</i> is a comma-separated list of quoted strings of the form "<i>Parameter</i>=<i>Value</i>".</p>
+
+<p><b>Starting Values</b><br>The fitting routine procedes iteratively from a set of starting values for the parameters. The user can set the starting value in the extrainfo string. For example, "A1=0.02" sets the starting value of  \(a_1\) to 0.02.</p>
+
+<p>
+<b>Fit Flags</b><br>
+Fit flags can be used to specify whether a parameter is adjusted to fit the migration probabilities or held fixed at its starting value. For example, "FitA1=0" specifies \(a_1\) to be fixed at its starting value, and "FitA1=1" specifies \(a_1\) to be adjusted . The default behaviour is to fit all parameters. Entire components can be held fixed using the  parameters FitChildhood, FitLabour, FitRetire and FitElderly. For example the extrainfo "FitElderly=0","A4=0" can be used to remove the entire elderly component from the fit.</p>
+
+<p><b>Error Type</b><br>
+Given a set of observed migration probabilities \({_n\omigprob_x}\) the build method searches for parameters that minimize the  objective function
+\begin{equation}
+	\sse=\sum_x \FitError({_n\omigprob_x},{_n\migprob_x}) .
+\end{equation}
+The form of the function \(\FitError(\omigprob,\migprob)\) is controlled by the ErrType extrainfo property
+\begin{equation}
+	\FitError(\omigprob,\migprob)=\left\{%
+		\begin{array}{ll}
+			(\migprob - \omigprob)^2 & \eqnote{ABS}\\
+			(\migprob - \omigprob)^2/\migprob^2 & \eqnote{REL}\\
+			\weight(\migprob - \omigprob)^2/(2\migprob)+\log(\migprob/\weight)/2 & \eqnote{NORMAL}\\
+			\weight(\migprob - \omigprob\log\migprob) & \eqnote{POISSON}\\
+			-\weight((1-\omigprob)\log(1-\migprob)+\omigprob\log\migprob) & \eqnote{BINOMIAL}
+		\end{array}\right.
+\end{equation}
+The value of the the weight \(\weight\) is controlled by the PCurve extrainfo property. If this is not specified then it defaults to \(\weight=1\). The default error type is "ErrType=REL".</p>
+
+<p><b>PCurve</b><br>
+The three error types NORMAL, POISSON, and BINOMIAL should be used when the observed migration probabilties \(_n\omigprob_x\) display appreciable sampling noise.The weight \(\weight\) then corresponds to the population in age group \([x,x+n)\) at risk of migrating.  An extrainfo string of the form "PCurve=<i>PCurveHandle</i>" specifies that these weights are to be taken from the PCurve object <i>PCurveHandle</i>.
+</p>
+
+<p><b>Likelihood Ratio Fit</b><br>
+It can sometimes happen that there is insufficient information to justify a fit of all thirteen parameters in the full model. This can occur because the observed migration curve simply does not show a particular feature such as the elderly component, or because sample variance makes a component difficult to resolve. By default ROGERS_CASTRO fits all parameters specified by the fit flags. This changes when the extrainfo parameter LRFit is set to a non-zero value. In this case ROGERS_CASTRO compares \(\sse\) for a fit of all thirteen parameters with fits excluding elderly and retirement components.
+The restricted models are chosen if they cannot be rejected by a likelihood ratio test. The default  significance level for the test is \(\alpha=5\%\). The level can be changed by the extrainfo string "SigLev=<i>Value</i>".
+
+</div>
+</body>
+</html>

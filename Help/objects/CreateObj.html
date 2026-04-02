@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html><head>  
+<title>CreateObj</title>
+<link rel="stylesheet" href="../css/willow.css" type="text/css">  
+<link rel="stylesheet" href="../css/willow_mod.css">
+<script src="../scripts/wloNavMenu.js"></script>
+</head>
+<body>
+<div id="header">
+<h1>CreateObj</h1>
+</div>
+
+<div id="nav">
+</div>
+<script>
+wloNavMenu()
+</script>
+
+<div id="section">
+<h2>CreateObj(Handle, ObjectType, BodyProps, BodyValues, TableName,
+TableCols, TableValues,...)</h2>
+
+<p>Creates an object from a set of body
+properties and values and a set of subtables and stores it in the
+object pool. Handle is the name of the object. It is
+case-sensitive and can contain any character except ':'.
+ObjectType is the type of the object that will be created.
+It is not case-sensitive.
+</p>
+
+<p>An object consists of a body and a set of subtables. The names of
+the body properties are specified by the array BodyProps.
+The values of the properties are specified in the array BodyValues,
+each row corresponding to a body property.</p>
+
+<p>TableName is the name of the subtable. TableCols is an array of column 
+names. TableValues specifies the values in the table. CreateObj can take up to 
+five subtables. If there are more than this then the object can be created using
+<a href="GridToObject.html">GridToObject</a>. Alternatively the object can be created
+with five subtables and the remaining added using 
+<a href="CloneObj.html">CloneObj</a>.</p>
+</div>
+
+</body></html>

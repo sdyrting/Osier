@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FillMatrix</title>
+<link rel="stylesheet" href="../css/willow.css" type="text/css">
+<link rel="stylesheet" href="../css/willow_mod.css">
+<script src="../scripts/wloNavMenu.js"></script>
+</head>
+<body>
+<div id="header">
+<h1>FillMatrix</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu()</script>
+
+<div id="section">
+<h2>FillMatrix(XRange,YRange,Matrix,[InterpMethod])</h2>
+<p>Fills missing values in a matrix by 2D interpolation. XRange and YRange are numeric row and column labels. The optional parameter InterpMethod specifies how the missing values are interpolated from the known values. It can take values 1 (row-dominated iterpolation), 2 (column-dominated interpolation) or 3 (average of row and column-dominated interpolation). If not specified then it defaults to 1.</p>
+
+<p>
+<div class='clsExcelTableTitle'>Matrix</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=126pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>YRange\XRange</td>
+  <td class='clsExcelTableCell4'>1</td>
+  <td class='clsExcelTableCell4'>2</td>
+  <td class='clsExcelTableCell4'>3</td>
+  <td class='clsExcelTableCell4'>4</td>
+  <td class='clsExcelTableCell4'>5</td>
+  <td class='clsExcelTableCell4'>6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>1</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>2</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>2</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>4</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>3</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>5</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>4</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>6</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>5</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>8</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>10</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>6</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td class='clsExcelTableCell2'>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+<p>
+<div class='clsExcelTableTitle'>InterpMethod=1</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=126pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>1</td>
+  <td class='clsExcelTableCell4'>2</td>
+  <td class='clsExcelTableCell4'>3</td>
+  <td class='clsExcelTableCell4'>4</td>
+  <td class='clsExcelTableCell4'>5</td>
+  <td class='clsExcelTableCell4'>6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>1</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>3</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>2</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>3</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>3</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>4</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>5</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>9</td>
+  <td class='clsExcelTableCellRed'>10</td>
+  <td class='clsExcelTableCellRed'>10</td>
+  <td class='clsExcelTableCellRed'>10</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>6</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>9</td>
+  <td class='clsExcelTableCellRed'>10</td>
+  <td class='clsExcelTableCellRed'>10</td>
+  <td class='clsExcelTableCellRed'>10</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+<p>
+<div class='clsExcelTableTitle'>InterpMethod=2</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=126pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>1</td>
+  <td class='clsExcelTableCell4'>2</td>
+  <td class='clsExcelTableCell4'>3</td>
+  <td class='clsExcelTableCell4'>4</td>
+  <td class='clsExcelTableCell4'>5</td>
+  <td class='clsExcelTableCell4'>6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>1</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>2</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>3</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>4</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>5</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>10</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>6</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>10</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+<p>
+<div class='clsExcelTableTitle'>InterpMethod=3</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=126pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+  <td width=73pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>1</td>
+  <td class='clsExcelTableCell4'>2</td>
+  <td class='clsExcelTableCell4'>3</td>
+  <td class='clsExcelTableCell4'>4</td>
+  <td class='clsExcelTableCell4'>5</td>
+  <td class='clsExcelTableCell4'>6</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>1</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>4.5</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>4.5</td>
+  <td class='clsExcelTableCellRed'>4.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>2</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>2</td>
+  <td class='clsExcelTableCellRed'>4.5</td>
+  <td class='clsExcelTableCellRed'>4</td>
+  <td class='clsExcelTableCellRed'>4.5</td>
+  <td class='clsExcelTableCellRed'>4.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>3</td>
+  <td class='clsExcelTableCellRed'>4.5</td>
+  <td class='clsExcelTableCellRed'>4.5</td>
+  <td class='clsExcelTableCellRed'>5.5</td>
+  <td class='clsExcelTableCellRed'>5.5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td class='clsExcelTableCellRed'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>4</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>6</td>
+  <td class='clsExcelTableCellRed'>7</td>
+  <td class='clsExcelTableCellRed'>5.5</td>
+  <td class='clsExcelTableCellRed'>5.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>5</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>7.5</td>
+  <td class='clsExcelTableCellRed'>10</td>
+  <td class='clsExcelTableCellRed'>7.5</td>
+  <td class='clsExcelTableCellRed'>7.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>6</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>8</td>
+  <td class='clsExcelTableCellRed'>7.5</td>
+  <td class='clsExcelTableCellRed'>10</td>
+  <td class='clsExcelTableCellRed'>7.5</td>
+  <td class='clsExcelTableCellRed'>7.5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+</div>
+</body>
+</html>

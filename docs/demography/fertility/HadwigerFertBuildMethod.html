@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hadwiger</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Hadwiger</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>Hadwiger</h2>
+<p>
+Fit fertility rates with a Hadwiger density
+$$
+	f(x)= R \frac{H}{T\sqrt{\pi}}\left(\frac{T}{x-D}\right)^{3/2}
+			\exp\left[-H^2\left(\frac{T}{x-D}+\frac{x-D}{T}-2\right)\right],\quad x>D
+$$
+ The parameters \(R\), \(D\), \(T\) and \(H\) are chosen to minimize the square of the absolute error in fertility rates. 
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hermite Survival Fraction</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Hermite Survival Fraction</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+\(
+\newcommand{\hermitesf}{\texttt{HERMITE\_SF}\ }
+\newcommand{\sfrac}{l}
+\newcommand{\ssf}{L}
+\)
+
+<div id="section">
+<h2>Hermite Survivial Fraction</h2>
+<p>This method uses cubic Hermite splines to build a mortality curve. Given a set of survival fractions \(\sfrac_i\) and person-years lived 
+\begin{equation}
+	\ssf_i=\int_0^{x_i} \sfrac(a) da
+\end{equation}
+at ages \(x_i\) for \(i=0,\ldots,n-1\) the value of \(\ssf(x)\) and \(\sfrac(x)\) at age \(x\in[x_i,x_{i+1})\) is
+\begin{eqnarray}
+	\ssf(x)&=& A \ssf_i + B\ssf_{i+1} + C\sfrac_i+D\sfrac_{i+1}\\
+	\sfrac(x)&=& A' \ssf_i + B' \ssf_{i+1} + C' \sfrac_i + D' \sfrac_{i+1}
+\end{eqnarray}
+where
+\begin{eqnarray}
+	A&=& 2t^3-3t^2+1,\\
+	B&=&-2t^3+3t^2,\\
+	C&=&(t^3-2t^2+t)(x_{i+1}-x_i),\\
+	D&=&(t^3-t^2)(x_{i+1}-x_i),
+\end{eqnarray}
+and
+\begin{equation}
+	t=\frac{x-x_i}{x_{i+1}-x_i}.
+\end{equation}
+</p>
+
+<p>
+Unlike other build methods this method requires both a frequency measure of mortality (death rate, death probability, survival fraction)  and a duration measure (person-years lived, person-years lived after, life expectancy or separation factor). This extra information is necessary when one wants to reproduce both survival fraction and life expectancy data in a published life table or when one wants to convert death rates into death probabilities using a specified set of separation factors. The duration measure data is given in a RESULTS object. The name of the results object must be  given in the build method extrainfo string. 
+</p>
+
+</div>
+</body>
+</html>

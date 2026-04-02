@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Multiple Transition Build Methods</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+
+<div id="header">
+<h1>Multiple Transition Build Methods</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\sfrac}{l}
+\newcommand{\ssfrac}{L}
+\newcommand{\topop}{\alpha}
+\newcommand{\mratio}{c}
+\newcommand{\deq}{:=}
+\newcommand{\intensity}{h}
+\newcommand{\fratio}{\gamma}
+\newcommand{\sdsfrac}{\sfrac^+}
+\)
+
+<div id="section">
+<h2>Introduction</h2>
+<p>Assume that a total out-migration curve has been built and that we have a set of  migration ratios  \(\mratio_\topop^i\) for age interval \([x_i,x_{i+1})\) , where \(\mratio_\topop^i\) is the number of out-migrations to population \(\topop\) divided by the total out-migrations. The objective is to build a destination-specific migration curve. The two main build methods are <a href="../mortality/MultiDecBuildMethods.html#constratio">CONSTANT_RATIO</a> and <a href=="../mortality/MultiDecBuildMethods.html#constratio">HYBRID_RATIO</a>. See <a href="../mortality/MultiDecBuildMethods.html">Multiple Decrement Build Methods</a> for details.
+The table below gives the BuildMethods currently supported
+<style>
+th, td {
+	text-align:left;
+}
+</style>
+<table>
+	<tr>
+	<th>MultiTransBuildMethod</th>
+	<th>Description</th>
+	</tr>
+	<tr>
+	<td><a href="../mortality/MultiDecBuildMethods.html#constratio">CONSTANT_RATIO</a></td>
+	<td>Between age nodes the migration ratio is constant. Use this method to interpolate a smooth curve</td>
+	</tr>
+	<tr>
+	<td><a href="../mortality/MultiDecBuildMethods.html#hybridratio">HYBRID_RATIO</a></td>
+	<td>Between age nodes the migration intensity is a quadratic function of age. Use this method to interpolate a smooth curve</td>
+	</tr>
+	<tr>
+	<td><a href="PSplineMultiTransBuildMethod.html">PSPLINE</a></td>
+	<td>Smooth migration ratios using P-splines.</td>
+	</tr>
+</table>
+</p>
+
+</div>
+</body>
+</html>

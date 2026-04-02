@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Support Vector Machines</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Support Vector Machines</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>Support Vector Machines</h2>
+<p>
+
+Smooths a complete mortality schedule using <a href="https://journals.library.ualberta.ca/csp/index.php/csp/article/view/17816">Support Vector Machine regression</a>. If the input mortality is abridged then a complete curve is first constructed using <a href="HybridForceMortBuildMethod.html">HYBRID_FORCE</a>. The parameters \(\sigma\), \(\epsilon\), and \(C\) for \(\epsilon\)-SVM can be specified using an extrainfo  string. For example SVM:"Sigma=100","Epsilon=0.01","C=3000" sets \(\sigma=100\), \(\epsilon=0.01\) and \(C=3000\). The default values are \(\epsilon=0.02\), \(\sigma=125\), and \(C=2200\). The SVM problem is solved using <a href="..\LIBSVM_COPYRIGHT">LIBSVM</a>.
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Brass</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Brass</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+\(
+\newcommand{\logit}{\mathrm{logit}}
+\newcommand{\alogit}{\logit^{-1}}
+\newcommand{\sfrac}{l}
+\newcommand{\tfrac}{Y}
+\newcommand{\osfrac}{\tilde{\sfrac}}
+\newcommand{\ssfrac}{\hat{\sfrac}}
+\newcommand{\otfrac}{\tilde{\tfrac}}
+\newcommand{\stfrac}{\hat{\tfrac}}
+\newcommand{\err}{\epsilon}
+\newcommand{\nobs}{n}
+\newcommand{\smorthandle}{\texttt{"}\textit{SMortHandle}\texttt{"}}
+\)
+
+<div id="section">
+<h2>Brass</h2>
+<p>
+This build method is an implementation of Brass' logit relational model.
+Given a set of observed survival fractions \(\osfrac_i\) at ages \(x_i\) , \(i=0,\ldots,\nobs-1\) and a standard curve \(\ssfrac\) calculate logits
+\begin{equation}
+	\otfrac_i=\logit(\osfrac_i),\quad \stfrac_i=\logit(\ssfrac_i)
+\end{equation}
+and solve the linear regression 
+\begin{equation}
+	\otfrac_i = \alpha + \beta\,\stfrac_i+ \err_i
+\end{equation}
+for \(\alpha\) and \(\beta\). The smoothed survival fraction at any age \(x\) is then
+\begin{equation}
+	\sfrac_x=\alogit(\tfrac_x)
+\end{equation}
+where
+\begin{equation}
+	\tfrac_x = \alpha + \beta\,\stfrac_x .
+\end{equation}
+If the mortality curve is given in terms of death rates or probabilities then they are converted to survival fractions using the <a href=ConstantForceMortBuildMethod.html>CONSTANT_FORCE</a> build method before applying BRASS. If the curve is specified in terms of death rates, probabilities or survival fractions then the build method property must be of the form BRASS:SMortHandle  where SMortHandle  is the name of the standard mortality object enclosed in quotes. If \(\alpha\) and \(\beta\) are already known then the curve can be defined using a Parameters subtable with columns Alpha, Beta and Standard.
+</p>
+</div>
+</body>
+</html>

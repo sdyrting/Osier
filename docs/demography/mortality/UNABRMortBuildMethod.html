@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Heligman-Pollard 8</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Heligman-Pollard 8</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>Heligman-Pollard 8</h2>
+<p>The Heligman-Pollard 8 build method fits the death probabilities to the 8-parameter Heligman-Pollard function
+$$
+q_x = A^{(x+B)^C} + D e^{-E(\log(x/F)^2} +\left\{
+	\begin{array}{ll}
+		G H^x, & \mathrm{ModelType=1}\\
+		\frac{G H^x}{1+G H^x}, & \mathrm{ModelType=2}
+	\end{array}\right.
+$$
+The first term models the mortality experienced by infants as they adapt to their environment. The last term models the aging process. The second term models the accident hump often seen in the late twenties. Fitting is done using a nonlinear optimization routine. The user can set the initial value of any of the parameters using an extrainfo string. For example setting the buildmethod to HELIGMAN_POLLARD8:"F=20.0","E=5.0","ModelType=2" will set the initial values of \(F\) and \(E\) to 20 and 5 respectively and fit the second form of the model. If ModelType is not specified it defaults to 1.
+</p>
+</div>
+</body>
+</html>

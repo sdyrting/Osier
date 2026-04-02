@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PCurves</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+<!--
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+-->
+</head>
+<body>
+
+<div id="header">
+<h1>PCurves</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>PCurve Objects</h2>
+<p>The age distribution of a population is described by an object of type PCURVE. The body of the object has three mandatory properties: Date, Population, and BuildMethod. Date specifies the date of the population readings. Population is a string uniquely identifying the population. <a href="PCurveBuildMethods.html">BuildMethod</a> determines how a continuous population curve is built from a finite number of population data points.</p>
+
+<h2>Age Distribution</h2>
+<p>
+The age distribution is specified by a Numbers subtable. There are two mandatory columns: Age and Number. The Number column specifies the number in the age range. The Age column specifies the age range. For all but the last entry the age range is from the age on the same row to the age on the next row. For the last entry the range is from the age on the same row to infinity. There is an optional Use column which specifies which numbers will be used to build the curve. A positive Use value specifies that an entry should be used. A zero or negative value specifies that the entry should not be used. The number of the population where the age is unknown can be specified using the optional value NotStated in the Age column.</p>
+
+<p>
+<div class='clsExcelTableTitle'>Numbers PCurve</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=105pt>&nbsp;</td>
+  <td width=172pt>&nbsp;</td>
+  <td width=67pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>Handle</td>
+  <td class='clsExcelTableCellGreen'>HE_AUS-M:0</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>Name</td>
+  <td class='clsExcelTableCell2'>HE_AUS-M</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'><div class='tooltip'>Type<span class='tooltiptext'>The type of the object. Must be PCURVE</span><div class='comment-triangle'></div></div></td>
+  <td class='clsExcelTableCell2'>PCURVE</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'><div class='tooltip'>Population<span class='tooltiptext'>A string uniquely identifying a population</span><div class='comment-triangle'></div></div></td>
+  <td class='clsExcelTableCell2'>AUS-M</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'><div class='tooltip'>Date<span class='tooltiptext'>The date of the population age density</span><div class='comment-triangle'></div></div></td>
+  <td class='clsExcelTableCell2'>20150630</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'><div class='tooltip'><a href="PCurveBuildMethods.html">BuildMethod</a><span class='tooltiptext'>The method used to build a complete age density of population from a finite set of numbers</span><div class='comment-triangle'></div></div></td>
+  <td class='clsExcelTableCell2'>HYBRID_EXPONENTIAL</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'><div class='tooltip'>Numbers<span class='tooltiptext'>The Numbers subtable has three columns: Age, Number, and [Use].</span><div class='comment-triangle'></div></div></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'><div class='tooltip'>Age<span class='tooltiptext'>The start age for the number and the end age of the previous number. For the last age in the table the end age is infinity.</span><div class='comment-triangle'></div></div></td>
+  <td class='clsExcelTableCell4'><div class='tooltip'>Number<span class='tooltiptext'>The population in with exact age in interval [StartAge,EndAge)</span><div class='comment-triangle'></div></div></td>
+  <td class='clsExcelTableCell4'><div class='tooltip'>Use<span class='tooltiptext'>A flag indicating whether or not an entry is used to build the pcurve object. Use >0 means the number is used. Use <= 0 means the number is not used, but the age will still be used to determine the end age of the previous row.This column is optional. If not specified then defaults to 1 for all rows.</span><div class='comment-triangle'></div></div></td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>0</td>
+  <td class='clsExcelTableCell2'>791063</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>5</td>
+  <td class='clsExcelTableCell2'>778321</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>10</td>
+  <td class='clsExcelTableCell2'>729181</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>15</td>
+  <td class='clsExcelTableCell2'>757172</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>20</td>
+  <td class='clsExcelTableCell2'>851818</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>25</td>
+  <td class='clsExcelTableCell2'>885390</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>30</td>
+  <td class='clsExcelTableCell2'>876875</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>35</td>
+  <td class='clsExcelTableCell2'>785670</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>40</td>
+  <td class='clsExcelTableCell2'>819943</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>45</td>
+  <td class='clsExcelTableCell2'>774379</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>50</td>
+  <td class='clsExcelTableCell2'>769307</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>55</td>
+  <td class='clsExcelTableCell2'>714584</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>60</td>
+  <td class='clsExcelTableCell2'>632862</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>65</td>
+  <td class='clsExcelTableCell2'>570582</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>70</td>
+  <td class='clsExcelTableCell2'>419402</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>75</td>
+  <td class='clsExcelTableCell2'>302432</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>80</td>
+  <td class='clsExcelTableCell2'>198364</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>85</td>
+  <td class='clsExcelTableCell2'>119628</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>90</td>
+  <td class='clsExcelTableCell2'>44170</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>95</td>
+  <td class='clsExcelTableCell2'>8178</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>100</td>
+  <td class='clsExcelTableCell2'>1015</td>
+  <td class='clsExcelTableCell2'>1</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+</div>
+</body>
+</html>

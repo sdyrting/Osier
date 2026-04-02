@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cubic Survival Fraction</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Cubic Survival Fraction</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+\(
+\newcommand{\cubicsf}{\texttt{CUBIC_SF}\ }
+\newcommand{\hybridforce}{\texttt{HYBRID_FORCE}\ }
+\newcommand{\sfrac}{l}
+\newcommand{\ssf}{L}
+\newcommand{\ossf}{\tilde{\ssf}}
+\newcommand{\force}{\mu}
+\newcommand{\dsf}{\sfrac'}
+\newcommand{\maxage}{\bar{x}}
+\newcommand{\tension}{\texttt{Tension}}
+\newcommand{\code}[1]{\texttt{#1}}
+\)
+
+<div id="section">
+<h2>Cubic Survivial Fraction</h2>
+<p>This mortality build method is an implementation of the approach of <a href="https://doi.org/10.1016/0025-5564(91)90057-P">Hsieh</a>. The main body of the mortality curve is built using cubic spline interpolation of the survival fraction. The spline lower boundary condition is determined by fitting the NIDI childhood model to the first two ages. The upper boundary condition is determined by either the Gompertz model or the <a href="HybridForceMortBuildMethod.html">Hybrid Force</a> build method. The mortality curve is built from a set of survival fractions \(\sfrac_i\) at ages \(x_i\) for \(i=0,\ldots,n-1\).  An age \(x_{n-1}=\infty\)  indicates an open interval in which case we assume the additional quantitiy \(\ossf\)  specifying the number of person years lived after age \(x_{n-2}\).
+</p>
+
+<h2>Childhood</h2>
+<p>
+Often the force of mortality decreases rapidly over childhood and in this case polynomial-based methods usually have problems fitting this portion of the curve. Mortality over ages \([0,x_1)\) follows the <a href="NIDIMortBuildMethod.html">NIDI childhood model</a> where the force of mortality is inversely proportional to a linear function of age
+\begin{equation}
+	\force(x)=\frac{A}{x+B} .
+\end{equation}
+The survival fraction is then given by
+\begin{equation}
+	\sfrac(x)=\left(\frac{B}{x+B}\right)^A .
+\end{equation}
+Applying this formula to the first two maturities, taking logarithms and eliminating \(A\) gives the following equation for \(B\)
+\begin{equation}
+	\alpha:= \frac{\log\sfrac_0}{\log\sfrac_1} = \frac{\log(x_0/B+1)}{\log(x_1/B+1)}
+\end{equation}
+This equation is solved  using Newton. \(A\) is then given by
+\begin{equation}
+	A=\frac{\log\sfrac_0}{\log(B/(x_0+B))}
+\end{equation}
+The slope of the survival fraction at \(x_1\) is
+\begin{equation}
+\label{eqn:dsflo}
+	\dsf_1 = -\force_1\sfrac_1
+\end{equation}
+which is used as the lower boundary condition for cubic spline interpolation
+</p>
+
+<h2>Advanced Ages</h2>
+<p>
+Let \(x_a\) be the last finite age. Over ages \([x_a,\infty)\) mortality is described by the Gompertz model
+\begin{equation}
+	\force(x)=R e^{a(x-x_a)}
+\end{equation}
+for which 
+\begin{equation}
+	\sfrac(x) = \sfrac_a \exp\left[\frac{R}{a}\left(1-e^{a(x-x_a)}\right)\right]
+\end{equation}
+This model is calibrated to the last three survival fractions \(\sfrac_{a-2}\), \(\sfrac_{a-1}\) and \(\sfrac_a\) or when there 
+is an open interval it is calibrated to \(\sfrac_{a-1}\), \(\sfrac_a\) and \(\ossf\). The slope of the survival fraction at \(x_a\) is
+\begin{equation}
+\label{eqn:dsfhi}
+	\dsf_a= -\force_a\sfrac_a
+\end{equation}
+which is used as the upper boundary condition for the cubic spline. It can happen the solution has \(a<0\)  which gives an infinite life expectancy at age \(x_a\). In this case \(\force(x)\) and \(\sfrac(x)\) are interpolated for \(x_a\le x\) using the <a href="HybridForceMortBuildMethod.html">Hybrid Force</a>. 
+</p>
+
+<h2>Main Body</h2>
+<p>
+Over the age range \([x_1,x_a]\) the survival fraction is interpolation using cubic splines with the lower and upper boundary conditions given by Equations\(~\ref{eqn:dsflo}\) and \(\ref{eqn:dsfhi}\). 
+</p>
+
+<h2>Parameters</h2>
+
+<b>Tension=x</b>
+<p>
+Even when using the childhood model for ages below \(x_1\) there can sometimes be large oscillations in the death rate for \(x>x_1\). By setting a value \(\code{x}>0\) cubic spline interpolation is replaced by tension splines with tension value \(\code{x}\) which show decreasing variations in curvature as \(\code{x}\) increases.
+</p>
+
+<b>FitChildhood=x</b>
+<p>
+By default the NIDI childhood model is used for ages \([0,x_1)\). Setting \(\code{x=0}\) will cause cubic splines to be used down to age 0 with natural bondary condition \(\sfrac''(0)=0\).
+</p>
+
+<b>MaxAge=x</b>
+<p>
+For large values of \(x_a\)  cubic splines can struggle to approximate the exponential decay in the survival fraction. Setting \(\code{x}>0\) changes the approach to cubic splines over \([x_1,\maxage]\) where \(\maxage=\min(\code{x},x_a)\)  and <a hfref="HybridForceMortBuildMethod.html">Hybrid Force</a> for ages above \(\maxage\).
+</p>
+</div>
+</body>
+</html>

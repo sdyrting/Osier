@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DyingProb</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>DyingProb</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\cause}{\alpha}
+\newcommand{\dyingprob}{\pi}
+\newcommand{\sfrac}{l}
+\)
+
+<div id="section">
+<h2>DyingProb(MortHandle,Cause,Age)</h2>
+<p>If MortHandle is a <a href="Mortality.html#dratios">multiple decrement mortality</a> this function returns the probability of dying from Cause conditioned on being alive at a given age
+\begin{equation}
+\dyingprob_\cause(x) = \frac{\sfrac_\cause(x)}{\sfrac(x)}.
+\end{equation}
+Cause is a comma-separated list of cause codes possibly prefixed by '~' to denote the complement.
+</p>
+
+
+</div>
+</body>
+</html>

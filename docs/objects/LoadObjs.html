@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LoadObjs</title>
+<link rel="stylesheet" type="text/css" href="../css/willow.css">
+<link rel="stylesheet" href="../css/willow_mod.css">
+<script src="../scripts/wloNavMenu.js"></script>
+</head>
+<body>
+<div id="header">
+<h1>LoadObjs</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu()</script>
+</div>
+
+<div id="section">
+<h2>LoadObjs([Handles], [TargetType], FileName)</h2>
+<p>Loads objects into the pool from a file where they were previously saved using <a href="SaveObjs.html">SaveObjs</a>.
+Handles is a regular expression specifying the names of the objects to load. If it is not specified then 
+all objects of the specified type will be loaded. TargetType is a regular expression specifying the types 
+of objects to load. If it is not specified then all objects irrespective of type will be loaded. FileName 
+is the full pathname of the file to load the objects from.</p>
+
+<p>Examples:<br>
+LoadObjs(,,myfile). Loads all objects<br>
+LoadObjs("AUD*","MORTALITY",myfile). Loads all the MORTALITY objects with names begining in "AUD"<br>
+</p>
+</div>
+</body>
+</html>

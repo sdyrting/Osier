@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SurvProb</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>SurvProb</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>SurvProb(MortHandle,Age,[AgeInterval])</h2>
+<p>Returns the survival probability for age interval [Age,Age+AgeInterval). If AgeInterval is not specified it defaults to 1.0. The survival probability \(_n p_x\) is one minus the <a href="DeathProb.html">death probability</a>
+$$
+_n p_x = 1-  {_n q_x}
+$$</p>
+
+<p>
+<div class='clsExcelTableTitle'>SurvProb</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=100pt>&nbsp;</td>
+  <td width=176pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>MortHandle</td>
+  <td class='clsExcelTableCell2'>AUS-M_ASDR5Y_2011:7</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>Age</td>
+  <td class='clsExcelTableCell2'>80</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>[AgeInterval]</td>
+  <td class='clsExcelTableCell2'>5</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell1'>SurvProb</td>
+  <td class='clsExcelTableCellRed'>0.71170817</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+</div>
+</body>
+</html>

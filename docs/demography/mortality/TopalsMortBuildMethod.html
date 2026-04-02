@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TOPALS Regression</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>TOPALS Regression</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+\(
+\newcommand{\topals}{\texttt{TOPALS}\ }
+\newcommand{\pop}{N}
+\newcommand{\bmat}{B}
+\newcommand{\bvec}{\theta}
+\newcommand{\mmult}{\cdot}
+\newcommand{\maxage}{\omega}
+\newcommand{\buildmethod}{\texttt{BM}}
+\newcommand{\linearsf}{\texttt{LINEAR\_SF}}
+\newcommand{\PInfo}{\texttt{PInfo}}
+\newcommand{\SMortHandle}{\texttt{SMortHandle}}
+\newcommand{\PCURVE}{\texttt{PCURVE}}
+%Death Rates
+\newcommand{\odeathrate}{\tilde{m}}
+\newcommand{\mdeathrate}{m}
+\newcommand{\udeathrate}{\mdeathrate}
+\newcommand{\sdeathrate}{\mdeathrate^s}
+\newcommand{\loglik}{{\cal L}}
+\newcommand{\DeathRate}{{\bf\mathrm DeathRate}}
+%Death Probabilities
+\newcommand{\DeathProb}{{\bf\mathrm DeathProb}}
+\newcommand{\odeathprob}{\tilde{q}}
+\newcommand{\mdeathprob}{q}
+\)
+
+<div id="section">
+<h2>TOPALS Regression</h2>
+<p>
+<a href="http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0102-30982016000300629">Gonzaga and Schmertmann's TOPALS method</a> is designed to build a mortality curve from observations that are subject to significant sample variance. The curve to estimate is specified by death rates \(\udeathrate_x\) at all ages \(x\) from \(0\) to \(\maxage=99\). These rates are expressed relative to a standard curve \(\sdeathrate_x\) in the form
+\begin{equation}
+	\log\udeathrate_x=\log\sdeathrate_x + \bmat_x\mmult\bvec .
+\end{equation}
+ Here \(\bmat\) is a \(100\times 7\) matrix of linear B-splines with knots at ages \(\{0,1,10,20,40,70,100\}\). Given a set of observed death rates \(\odeathrate_j\) for age intervals \([x_j,x_j+n_j)\) the seven B-spline coefficients \(\bvec\) are chosen to maximise the penalized log likelihood function
+\begin{equation}
+	\loglik(\bvec) =\sum_j\pop_j\left(\odeathrate_j\log\mdeathrate_j-\mdeathrate_j\right) 
+		-\sum_{0\le i<6}(\bvec_{i+1}-\bvec_i)^2 .
+\end{equation}
+where \(\pop_j\) is the population at risk and \(\mdeathrate_j\) is the estimated death rate over the interval \([x_j,x_j+n_j)\). Rates \(\mdeathrate_j\) are calculated from the model curve using
+\begin{equation}
+	\mdeathrate_j=\DeathRate(x_j,n_j;\udeathrate,\buildmethod)
+\end{equation}
+where \(\buildmethod\) is the helper buildmethod <a href="LinearSFMortBuildMethod.html">LINEAR_SF</a>.
+</p>
+<h2>Death Probabilities</h2>
+<p>
+Given a set of observed death probabilities \(\odeathprob_j\) the weights \(\bvec\) are calculated by minimizing the penalty function
+\begin{equation}
+	\loglik(\bvec) =\sum_j\frac{\pop_j}{n_j}\left(\odeathprob_j\log\mdeathprob_j-\mdeathprob_j\right) 
+		-\sum_{0\le i<6}(\bvec_{i+1}-\bvec_i)^2
+\end{equation}
+where estimated probabilies \(\mdeathprob_j\) are calculated from the curve using
+\begin{equation}
+	\mdeathprob_j=\DeathProb(x_j,n_j;\udeathrate,\buildmethod) .
+\end{equation}
+</p>
+<h2>Extra Information</h2>
+<p>The user must specify the population size \(\pop\) and standard mortality curve \(\sdeathrate\) using a extrainfo string of the form PInfo,SMortHandle. If PInfo is a number then it specifies the population per age interval in the mortality object. If PInfo is a string of the form "P=X" where X is a number then the total population is equal to X and the population per age interval will be calculated assuming the population follows a stationary distribution. If the PInfo string is not of this format then is specifies the name of a <a href="..\pcurves\PCurves.html">PCURVE</a> object from which the population per mortality age interval is calculated. SMortHandle is the name of the standard mortality exclosed in quotes.
+</p>
+</div>
+</body>
+</html>

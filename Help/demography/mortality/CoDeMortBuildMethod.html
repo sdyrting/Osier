@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CoDe</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>CoDe Mortality Model</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu()</script>
+
+\(
+\newcommand{\eqnote}[1]{\mbox{(#1)}}
+\)
+
+<div id="section">
+<h2>CoDe Mortality Model</h2>
+<p>Fit death probablities or death rates using the 10-parameter  <a href="https://doi.org/10.1186/s12963-016-0113-1">Compression-Delay (CoDe) model</a>
+$$
+\begin{array}{lclr}
+q_x & = &  \frac{A}{x+B} & \eqnote{childhood}\\
+	&&+a_0\frac{b_0 e^{b_0(x-m_0)}}{1+b_0e^{b_0(x-m_0)}} & \eqnote{adolescence}\\
+	&&+[x\le m_1-h]\frac{b_1 e^{b_1(x-m_1)}}{1+(b_1/g)e^{b_1(x-m_1)}} & \eqnote{early adulthood}\\
+	&&+[m_1-h < x \le m_1]\left(\frac{b_2 e^{b_2(x-m_1)}}{1+(b_2/g)e^{b_2(x-m_1)}}+c_1\right) & \eqnote{late adulthood}\\
+	&&+[m_1 < x]\left(\frac{b_3 e^{b_3(x-m_1)}}{1+(b_3/g)e^{b_3(x-m_1)}}+c_2\right) & \eqnote{old age}\\
+\end{array}
+$$
+where \(c_1\) and \(c_2\) are determined by continuity at \(x=m_1-h\) and \(x=m_1\). Fitting is done iteratively using a nonlinear optimization routine. The user can set the initial value of any of the parameters using an extrainfo string. For example setting the buildmethod to CODE:"G=0.6" will set the initial value of \(g\) to 0.6. Because of the large number of parameters it is sometimes desirable to hold one or more of them fixed. This can be done using fit flags in the extrainfo string. For example CODE:"B0=1","FitB0=0","M0=16","FitM0=0" will fit the model keeping \(b_0\) and \(m_0\) fixed at 1 and 16 respectively.
+</p>
+</div>
+</body>
+</html>

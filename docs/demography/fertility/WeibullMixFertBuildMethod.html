@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Weibull Mixture</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Weibull Mixture</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+\(
+\newcommand{\frate}{f}
+\newcommand{\ofrate}{\tilde{\frate}}
+\newcommand{\FitError}{\mathit{Error}}
+\newcommand{\weight}{N}
+\newcommand{\sse}{{\cal L}}
+\newcommand{\extrainfo}[1]{\texttt{#1}}
+\newcommand{\exvalue}[1]{\textsl{#1}}
+\newcommand{\eqnote}[1]{\mbox{(#1)}}
+\)
+
+<div id="section">
+<h2>Weibull Mixture</h2>
+<p>
+This build method fits fertility rates to Bermudez, Blanquero, Hernandez and Planelles' Weibull mixture model
+\begin{equation}
+	\begin{array}{lcll}
+		\frate(x)&=&R_1\alpha_1\beta_1 (\alpha_1 x)^{\beta_1-1}
+			\exp\left[-(\alpha_1 x)^{\beta_1}\right] &\eqnote{non-marital}\\
+\\
+				&&+R_2\alpha_2\beta_2 (\alpha_2 x)^{\beta_2-1}
+			\exp\left[-(\alpha_2 x)^{\beta_2}\right] & \eqnote{marital}
+	\end{array}
+\end{equation}
+</p>
+
+<h2>ExtraInfo</h2>
+<p>
+Fitting is done using a nonlinear optimisation routine. Its default behaviour can be changed by appending an extrainfo string to the buildmethod value, WEIBULL_MIX:<i>ExtraInfo</i>. Here <i>ExtraInfo</i> is a comma-separated list of quoted strings of the form "<i>Parameter</i>=<i>Value</i>".
+</p>
+
+<h2>Starting Values</h2>
+<p>
+The fitting routine proceeds iteratively from a set of starting values for the parameters. The user can set the starting value in the extrainfo string. For example, "Alpha2=0.03" sets the starting value of  \(\alpha_2\) to 0.03.
+</p>
+
+<h2>Fit Flags</h2>
+<p>
+Fit flags can be used to specify whether a parameter is adjusted to fit the fertility probabilities or held fixed at its starting value. For example, "FitR1=0" specifies \(R_1\) to be fixed at its starting value, and "FitR1=1" specifies \(R_1\) to be adjusted. The default behaviour is to fit all parameters. Entire components can be held fixed using the  parameters FitNonMarital and FitMarital. For example the extrainfo "FitMarital=0","R1=0" can be used to remove the entire marital component from the fit.
+</p>
+
+<h2>Error Type</h2>
+<p>
+Given a set of observed fertility rates \({_n\ofrate_x}\) the build method searches for parameters that minimise the  objective function
+\begin{equation}
+	\sse=\sum_x \FitError({_n\ofrate_x},{_n\frate_x}) .
+\end{equation}
+The form of the function \(\FitError(\ofrate,\frate)\) is controlled by the ErrType extrainfo property
+\begin{equation}
+	\FitError(\ofrate,\frate)=\left\{%
+		\begin{array}{ll}
+			(\frate - \ofrate)^2 & \eqnote{ABS}\\
+			\weight(\frate - \ofrate\log\frate) & \eqnote{POISSON}\\
+		\end{array}\right.
+\end{equation}
+The value of the the weight \(\weight\) is controlled by the PCurve extrainfo property. If this is not specified then it defaults to \(\weight=1\). The default error type is "ErrType=ABS".
+</p>
+
+<h2>PCurve</h2>
+<p>
+The error type POISSON is for use when the observed fertilities \(_n\ofrate_x\) display appreciable sample noise. The weight \(\weight\) then corresponds to the population in age group \([x,x+n)\) at risk.  An extrainfo string of the form "PCurve=<i>PCurveHandle</i>" specifies that these weights are to be taken from the PCurve object <i>PCurveHandle</i>.
+</p>
+</div>
+</body>
+</html>

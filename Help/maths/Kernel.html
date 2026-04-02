@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kernel</title>
+<link rel="stylesheet" href="../css/willow.css" type="text/css">
+<link rel="stylesheet" href="../css/willow_mod.css">
+<script src="../scripts/wloNavMenu.js"></script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+<div id="header">
+<h1>Kernel</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu()</script>
+
+\(
+\newcommand{\kernel}{K}
+\)
+
+<div id="section">
+<h2>GAUSSIAN</h2>
+<p>
+\begin{equation}
+	\kernel(z)= \frac{1}{\sqrt{2\pi} }e^{-z^2/2} .
+\end{equation}
+</p>
+<h2>EPAN2</h2>
+<p>
+\begin{equation}
+	\kernel(z) = \left\{
+		\begin{array}{ll}
+			\frac{3}{4}(1-z^2), & |z| < 1\\
+			0, & \mathrm{otherwise}
+		\end{array}\right. .
+\end{equation}
+</p>
+<h2>EPANECHNIKOV</h2>
+This kernel is the same as EPAN2  but has support on a wider interval
+\begin{equation}
+	\kernel(z) = \left\{
+		\begin{array}{ll}
+			\frac{3}{4}(1-\frac{1}{5}z^2)/\sqrt{5}, & |z| < \sqrt{5}\\
+			0, & \mathrm{otherwise}
+		\end{array}\right.
+\end{equation}
+<h2>BIWEIGHT</h2>
+\begin{equation}
+	\kernel(z) = \left\{\begin{array}{ll}
+				\frac{15}{16}(1-z^2)^2, & |z| < 1\\
+				0, & \mathrm{otherwise}
+				\end{array}\right.
+\end{equation}
+<h2>RECTANGLE</h2>
+\begin{equation}
+	\kernel(z) = \left\{\begin{array}{ll}
+				1/2, & |z| < 1 \\
+				0, & \mathrm{otherwise}
+				\end{array}\right.
+\end{equation}
+<h2>TRIANGLE</h2>
+\begin{equation}
+	\kernel(z) = \left\{\begin{array}{ll}
+				1-|z|, & |z| < 1 \\
+				0, & \mathrm{otherwise}
+				\end{array}\right.
+\end{equation}
+<h2>COSINE</h2>
+\begin{equation}
+	\kernel(z) = \left\{\begin{array}{ll}
+				1+\cos(2\pi z), & |z| < 1/2 \\
+				0, & \mathrm{otherwise}
+				\end{array}\right.
+\end{equation}
+<h2>PARZEN</h2>
+\begin{equation}
+	\kernel(z)=\left\{\begin{array}{ll}
+				\frac{4}{3}-8 z^2 + 8|z|^3, & |z| \le 1/2 \\
+				\frac{8}{3}(1-|z|)^3, & 1/2 < |z| \le 1\\
+				0, & \mathrm{otherwise}
+				\end{array}\right.
+\end{equation}
+
+</div>
+</body>
+</html>

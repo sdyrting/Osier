@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ColSort</title>
+<link rel="stylesheet" href="../css/willow.css" type="text/css">
+<link rel="stylesheet" href="../css/willow_mod.css">
+<script src="../scripts/wloNavMenu.js"></script>
+</head>
+<body>
+<div id="header">
+<h1>ColSort</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu()</script>
+
+<div id="section">
+<h2>ColSort(Range,[SortCol],[Ascend])</h2>
+<p>
+Sorts the rows of a range using the values in a specified column. Range is the range to sort. SortCol specifies the column to sort by. If not specified then it defaults to SortCol=1. Ascend specifies whether the rows are sorted ascending (Ascend <> 0) or descending (Ascend=0). If not specified then it defaults to Ascend=1.</p>
+
+<p>
+<div class='clsExcelTableTitle'>Range</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=133pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>Country</td>
+  <td class='clsExcelTableCell4'>TFR</td>
+  <td class='clsExcelTableCell4'>R</td>
+  <td class='clsExcelTableCell4'>Alpha</td>
+  <td class='clsExcelTableCell4'>P</td>
+  <td class='clsExcelTableCell4'>H</td>
+  <td class='clsExcelTableCell4'>Delay</td>
+  <td class='clsExcelTableCell4'>Stopping</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Afghanistan</td>
+  <td class='clsExcelTableCell2'>5.72</td>
+  <td class='clsExcelTableCell2'>0.290589</td>
+  <td class='clsExcelTableCell2'>13.00507</td>
+  <td class='clsExcelTableCell2'>24.63996</td>
+  <td class='clsExcelTableCell2'>39.08151</td>
+  <td class='clsExcelTableCell2'>4.639957</td>
+  <td class='clsExcelTableCell2'>-1.76154</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Albania</td>
+  <td class='clsExcelTableCell2'>2.27</td>
+  <td class='clsExcelTableCell2'>0.166136</td>
+  <td class='clsExcelTableCell2'>15.51535</td>
+  <td class='clsExcelTableCell2'>26.7616</td>
+  <td class='clsExcelTableCell2'>34.13652</td>
+  <td class='clsExcelTableCell2'>6.761604</td>
+  <td class='clsExcelTableCell2'>4.244284</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Algeria</td>
+  <td class='clsExcelTableCell2'>2.63</td>
+  <td class='clsExcelTableCell2'>0.17114</td>
+  <td class='clsExcelTableCell2'>13.93767</td>
+  <td class='clsExcelTableCell2'>27.1674</td>
+  <td class='clsExcelTableCell2'>35.63377</td>
+  <td class='clsExcelTableCell2'>7.167405</td>
+  <td class='clsExcelTableCell2'>2.949936</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>American Samoa</td>
+  <td class='clsExcelTableCell2'>3.4</td>
+  <td class='clsExcelTableCell2'>0.228138</td>
+  <td class='clsExcelTableCell2'>13.38086</td>
+  <td class='clsExcelTableCell2'>26.94889</td>
+  <td class='clsExcelTableCell2'>34.70073</td>
+  <td class='clsExcelTableCell2'>6.948893</td>
+  <td class='clsExcelTableCell2'>3.773713</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Andorra</td>
+  <td class='clsExcelTableCell2'>1.26</td>
+  <td class='clsExcelTableCell2'>0.099852</td>
+  <td class='clsExcelTableCell2'>15.22119</td>
+  <td class='clsExcelTableCell2'>29.98864</td>
+  <td class='clsExcelTableCell2'>35.06823</td>
+  <td class='clsExcelTableCell2'>9.988638</td>
+  <td class='clsExcelTableCell2'>4.926085</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Angola</td>
+  <td class='clsExcelTableCell2'>6.43</td>
+  <td class='clsExcelTableCell2'>0.314661</td>
+  <td class='clsExcelTableCell2'>11.31434</td>
+  <td class='clsExcelTableCell2'>24.81307</td>
+  <td class='clsExcelTableCell2'>39.39524</td>
+  <td class='clsExcelTableCell2'>4.813066</td>
+  <td class='clsExcelTableCell2'>-1.98871</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Anguilla</td>
+  <td class='clsExcelTableCell2'>1.77</td>
+  <td class='clsExcelTableCell2'>0.125609</td>
+  <td class='clsExcelTableCell2'>13.4111</td>
+  <td class='clsExcelTableCell2'>28.84279</td>
+  <td class='clsExcelTableCell2'>35.09294</td>
+  <td class='clsExcelTableCell2'>8.842791</td>
+  <td class='clsExcelTableCell2'>4.328457</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Antig & Barb</td>
+  <td class='clsExcelTableCell2'>2.29</td>
+  <td class='clsExcelTableCell2'>0.154319</td>
+  <td class='clsExcelTableCell2'>8.478101</td>
+  <td class='clsExcelTableCell2'>21.80567</td>
+  <td class='clsExcelTableCell2'>30.22622</td>
+  <td class='clsExcelTableCell2'>1.805671</td>
+  <td class='clsExcelTableCell2'>5.676614</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Argentina</td>
+  <td class='clsExcelTableCell2'>2.41</td>
+  <td class='clsExcelTableCell2'>0.139641</td>
+  <td class='clsExcelTableCell2'>5.654784</td>
+  <td class='clsExcelTableCell2'>27.2739</td>
+  <td class='clsExcelTableCell2'>35.68839</td>
+  <td class='clsExcelTableCell2'>7.273896</td>
+  <td class='clsExcelTableCell2'>2.948557</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Armenia</td>
+  <td class='clsExcelTableCell2'>1.53</td>
+  <td class='clsExcelTableCell2'>0.164481</td>
+  <td class='clsExcelTableCell2'>18.60237</td>
+  <td class='clsExcelTableCell2'>18.60257</td>
+  <td class='clsExcelTableCell2'>26.809</td>
+  <td class='clsExcelTableCell2'>-1.39743</td>
+  <td class='clsExcelTableCell2'>7.49229</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Aruba</td>
+  <td class='clsExcelTableCell2'>1.8</td>
+  <td class='clsExcelTableCell2'>0.117888</td>
+  <td class='clsExcelTableCell2'>11.62507</td>
+  <td class='clsExcelTableCell2'>27.03405</td>
+  <td class='clsExcelTableCell2'>34.53762</td>
+  <td class='clsExcelTableCell2'>7.034045</td>
+  <td class='clsExcelTableCell2'>3.979406</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Australia</td>
+  <td class='clsExcelTableCell2'>1.77</td>
+  <td class='clsExcelTableCell2'>0.125627</td>
+  <td class='clsExcelTableCell2'>11.87729</td>
+  <td class='clsExcelTableCell2'>30.13009</td>
+  <td class='clsExcelTableCell2'>35.68948</td>
+  <td class='clsExcelTableCell2'>10.13009</td>
+  <td class='clsExcelTableCell2'>4.375561</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Austria</td>
+  <td class='clsExcelTableCell2'>1.4</td>
+  <td class='clsExcelTableCell2'>0.102684</td>
+  <td class='clsExcelTableCell2'>13.66067</td>
+  <td class='clsExcelTableCell2'>27.40404</td>
+  <td class='clsExcelTableCell2'>33.79127</td>
+  <td class='clsExcelTableCell2'>7.404042</td>
+  <td class='clsExcelTableCell2'>4.910751</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell2'>Azerbaijan</td>
+  <td class='clsExcelTableCell2'>2.29</td>
+  <td class='clsExcelTableCell2'>0.191994</td>
+  <td class='clsExcelTableCell2'>17.06999</td>
+  <td class='clsExcelTableCell2'>22.72184</td>
+  <td class='clsExcelTableCell2'>30.65458</td>
+  <td class='clsExcelTableCell2'>2.72184</td>
+  <td class='clsExcelTableCell2'>5.706337</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+<p>
+<div class='clsExcelTableTitle'>ColSort</div>
+<table class='clsBorderTable'>
+<tr>
+<td>
+<table class='clsExcelTable'>
+ <tr>
+  <td width=72pt>&nbsp;</td>
+  <td width=133pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+  <td width=72pt>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>SortCol</td>
+  <td class='clsExcelTableCell2'>7</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'><div class='tooltip'>Ascend<span class='tooltiptext'><>0 Ascending.=0 Descending</span><div class='comment-triangle'></div></div></td>
+  <td class='clsExcelTableCell2'>0</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td class='clsExcelTableCell1'>ColSort</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCell4'>Country</td>
+  <td class='clsExcelTableCell4'>TFR</td>
+  <td class='clsExcelTableCell4'>R</td>
+  <td class='clsExcelTableCell4'>Alpha</td>
+  <td class='clsExcelTableCell4'>P</td>
+  <td class='clsExcelTableCell4'>H</td>
+  <td class='clsExcelTableCell4'>Delay</td>
+  <td class='clsExcelTableCell4'>Stopping</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Australia</td>
+  <td class='clsExcelTableCellRed'>1.77</td>
+  <td class='clsExcelTableCellRed'>0.125627</td>
+  <td class='clsExcelTableCellRed'>11.87729</td>
+  <td class='clsExcelTableCellRed'>30.13009</td>
+  <td class='clsExcelTableCellRed'>35.68948</td>
+  <td class='clsExcelTableCellRed'>10.13009</td>
+  <td class='clsExcelTableCellRed'>4.375561</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Andorra</td>
+  <td class='clsExcelTableCellRed'>1.26</td>
+  <td class='clsExcelTableCellRed'>0.099852</td>
+  <td class='clsExcelTableCellRed'>15.22119</td>
+  <td class='clsExcelTableCellRed'>29.98864</td>
+  <td class='clsExcelTableCellRed'>35.06823</td>
+  <td class='clsExcelTableCellRed'>9.988638</td>
+  <td class='clsExcelTableCellRed'>4.926085</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Anguilla</td>
+  <td class='clsExcelTableCellRed'>1.77</td>
+  <td class='clsExcelTableCellRed'>0.125609</td>
+  <td class='clsExcelTableCellRed'>13.4111</td>
+  <td class='clsExcelTableCellRed'>28.84279</td>
+  <td class='clsExcelTableCellRed'>35.09294</td>
+  <td class='clsExcelTableCellRed'>8.842791</td>
+  <td class='clsExcelTableCellRed'>4.328457</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Austria</td>
+  <td class='clsExcelTableCellRed'>1.4</td>
+  <td class='clsExcelTableCellRed'>0.102684</td>
+  <td class='clsExcelTableCellRed'>13.66067</td>
+  <td class='clsExcelTableCellRed'>27.40404</td>
+  <td class='clsExcelTableCellRed'>33.79127</td>
+  <td class='clsExcelTableCellRed'>7.404042</td>
+  <td class='clsExcelTableCellRed'>4.910751</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Argentina</td>
+  <td class='clsExcelTableCellRed'>2.41</td>
+  <td class='clsExcelTableCellRed'>0.139641</td>
+  <td class='clsExcelTableCellRed'>5.654784</td>
+  <td class='clsExcelTableCellRed'>27.2739</td>
+  <td class='clsExcelTableCellRed'>35.68839</td>
+  <td class='clsExcelTableCellRed'>7.273896</td>
+  <td class='clsExcelTableCellRed'>2.948557</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Algeria</td>
+  <td class='clsExcelTableCellRed'>2.63</td>
+  <td class='clsExcelTableCellRed'>0.17114</td>
+  <td class='clsExcelTableCellRed'>13.93767</td>
+  <td class='clsExcelTableCellRed'>27.1674</td>
+  <td class='clsExcelTableCellRed'>35.63377</td>
+  <td class='clsExcelTableCellRed'>7.167405</td>
+  <td class='clsExcelTableCellRed'>2.949936</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Aruba</td>
+  <td class='clsExcelTableCellRed'>1.8</td>
+  <td class='clsExcelTableCellRed'>0.117888</td>
+  <td class='clsExcelTableCellRed'>11.62507</td>
+  <td class='clsExcelTableCellRed'>27.03405</td>
+  <td class='clsExcelTableCellRed'>34.53762</td>
+  <td class='clsExcelTableCellRed'>7.034045</td>
+  <td class='clsExcelTableCellRed'>3.979406</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>American Samoa</td>
+  <td class='clsExcelTableCellRed'>3.4</td>
+  <td class='clsExcelTableCellRed'>0.228138</td>
+  <td class='clsExcelTableCellRed'>13.38086</td>
+  <td class='clsExcelTableCellRed'>26.94889</td>
+  <td class='clsExcelTableCellRed'>34.70073</td>
+  <td class='clsExcelTableCellRed'>6.948893</td>
+  <td class='clsExcelTableCellRed'>3.773713</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Albania</td>
+  <td class='clsExcelTableCellRed'>2.27</td>
+  <td class='clsExcelTableCellRed'>0.166136</td>
+  <td class='clsExcelTableCellRed'>15.51535</td>
+  <td class='clsExcelTableCellRed'>26.7616</td>
+  <td class='clsExcelTableCellRed'>34.13652</td>
+  <td class='clsExcelTableCellRed'>6.761604</td>
+  <td class='clsExcelTableCellRed'>4.244284</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Angola</td>
+  <td class='clsExcelTableCellRed'>6.43</td>
+  <td class='clsExcelTableCellRed'>0.314661</td>
+  <td class='clsExcelTableCellRed'>11.31434</td>
+  <td class='clsExcelTableCellRed'>24.81307</td>
+  <td class='clsExcelTableCellRed'>39.39524</td>
+  <td class='clsExcelTableCellRed'>4.813066</td>
+  <td class='clsExcelTableCellRed'>-1.98871</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Afghanistan</td>
+  <td class='clsExcelTableCellRed'>5.72</td>
+  <td class='clsExcelTableCellRed'>0.290589</td>
+  <td class='clsExcelTableCellRed'>13.00507</td>
+  <td class='clsExcelTableCellRed'>24.63996</td>
+  <td class='clsExcelTableCellRed'>39.08151</td>
+  <td class='clsExcelTableCellRed'>4.639957</td>
+  <td class='clsExcelTableCellRed'>-1.76154</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Azerbaijan</td>
+  <td class='clsExcelTableCellRed'>2.29</td>
+  <td class='clsExcelTableCellRed'>0.191994</td>
+  <td class='clsExcelTableCellRed'>17.06999</td>
+  <td class='clsExcelTableCellRed'>22.72184</td>
+  <td class='clsExcelTableCellRed'>30.65458</td>
+  <td class='clsExcelTableCellRed'>2.72184</td>
+  <td class='clsExcelTableCellRed'>5.706337</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Antig & Barb</td>
+  <td class='clsExcelTableCellRed'>2.29</td>
+  <td class='clsExcelTableCellRed'>0.154319</td>
+  <td class='clsExcelTableCellRed'>8.478101</td>
+  <td class='clsExcelTableCellRed'>21.80567</td>
+  <td class='clsExcelTableCellRed'>30.22622</td>
+  <td class='clsExcelTableCellRed'>1.805671</td>
+  <td class='clsExcelTableCellRed'>5.676614</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td class='clsExcelTableCellRed'>Armenia</td>
+  <td class='clsExcelTableCellRed'>1.53</td>
+  <td class='clsExcelTableCellRed'>0.164481</td>
+  <td class='clsExcelTableCellRed'>18.60237</td>
+  <td class='clsExcelTableCellRed'>18.60257</td>
+  <td class='clsExcelTableCellRed'>26.809</td>
+  <td class='clsExcelTableCellRed'>-1.39743</td>
+  <td class='clsExcelTableCellRed'>7.49229</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</p>
+
+</div>
+</body>
+</html>

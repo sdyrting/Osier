@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PCurve Build Methods</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+<!--
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+-->
+</head>
+<body>
+
+<div id="header">
+<h1>PCurve Build Methods</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<!--<h2>Heading</h2>-->
+<p>The property BuildMethod specifies the method that is used to build a complete population curve from a finite set of age-specific population numbers. The table below gives the BuildMethods currently supported
+<style>
+th, td {
+	text-align:left;
+}
+</style>
+<table>
+	<tr>
+	<th>BuildMethod</th>
+	<th>Description</th>
+	</tr>
+	<tr>
+	<td><a href="ConstantDensityPCurveBuildMethod.html">CONSTANT_DENSITY</a></td>
+	<td>Between age nodes the population density is constant</td>
+	</tr>
+	<tr>
+	<td><a href="QuadraticDensityPCurveBuildMethod.html">QUADRATIC_DENSITY</a></td>
+	<td>Between age nodes the population denstiy is a quadratic function of age with curvature continuous across age nodes.</td>
+	</tr>
+	<tr>
+	<td><a href="HybridDensityPCurveBuildMethod.html">HYBRID_DENSITY</a></td>
+	<td>Between age nodes the population density is a quadratic function of age. Density does not vary as much as for QUADRATIC_DENSITY but curvature is discontinuous across nodes.</td>
+	</tr>
+	<tr>
+	<td><a href="HybridExponentialPCurveBuildMethod.html">HYBRID_EXPONENTIAL</a></td>
+	<td>Between age nodes the logarithm of the population denstiy is a quadratic function of age with discontinuous curvature.</td>
+	</tr>
+	<tr>
+	<td><a href="SmoothingPCurveBuildMethods.html#Feeney">FEENEY</a></td>
+	<td>Feeney's method for smoothing a population subject to age-heaping.</td>
+	</tr>
+	<tr>
+	<td><a href="SmoothingPCurveBuildMethods.html#Sprague">SPRAGUE</a></td>
+	<td>Smooth by aggregating the population into five-year groups then subdividing using Sprague.</td>
+	</tr>
+	<tr>
+	<td><a href="SmoothingPCurveBuildMethods.html#WeightedAverage">WEIGHTED_AVERAGE</a></td>
+	<td>Smooth by a weighted moving average over age</td>
+	</tr>
+	<tr>
+	<td><a href="SmoothingPCurveBuildMethods.html#CarrierFarrag">CARRIER_FARRAG</a></td>
+	<td>Smooth by aggregating the population into five-year groups then adjusting using Carrier-Farrag then subdividing using Sprague.</td>
+	</tr>
+	<tr>
+	<td><a href="SmoothingPCurveBuildMethods.html#KarupKingNewton">KARUP_KING_NEWTON</a></td>
+	<td>Aggregate the population into five-year age groups, smooth using Karup-King-Newton then subdivide using Karup-King.</td>
+	</tr>
+	<tr>
+	<td><a href="SmoothingPCurveBuildMethods.html#ArriagaLight">ARRIAGA</a></td>
+	<td>Aggregate the population into five-year age groups, smooth using Arriaga's light method, then subdivide using Sprague.</td>
+	</tr>
+	<tr>
+	<td><a href="SmoothingPCurveBuildMethods.html#ArriagaLight">MOD_ARRIAGA</a></td>
+	<td>Same as Arriaga but smoothing starts at age five instead of age zero.</td>
+	</tr>
+	<tr>
+	<td><a href="SmoothingPCurveBuildMethods.html#UnitedNations">UNITED_NATIONS</a></td>
+	<td>Aggregate the population into five-year age groups, smooth using the United Nations method, then subdivide using Sprague.</td>
+	</tr>
+	<tr>
+	<td><a href="SmoothingPCurveBuildMethods.html#ArriagaStrong">STRONG</a></td>
+	<td>Aggregate the population into ten-year age groups, smooth using Arriaga's strong method, subdivide into five-year age groups using Arriaga's light method, then subdivide into single year age groups using Sprague.</td>
+	</tr>
+	<tr>
+	<td><a href="PclmPCurveBuildMethod.html">PCLM</a></td>
+	<td>Expand an abridged population using the Penalised Composite Link Model</td>
+	</tr>
+	<tr>
+	<td><a href="PTopalsPCurveBuildMethod.html">PTOPALS</a></td>
+	<td>Expand an abridged population using the PTOPALS (<a href="https://link.springer.com/article/10.1007/s11113-022-09734-2">Dyrting, Flaxman, and Sharygin, 2022</a>)</td>
+	</tr>
+
+</table>
+</p>
+</div>
+</body>
+</html>

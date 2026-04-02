@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hybrid Fertility</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Hybrid Fertility</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+
+<div id="section">
+<h2>Hybrid Fertility</h2>
+<p>
+Given a set of fertility rates \(\tilde{f}_i\) on age intervals \([x_{i-1},x_i)\) ,\(i=1,\ldots,N\) calculate the cummulative fertility rate \(F_i\) at \(x_i\)
+$$
+	F_i=\left\{
+		\begin{array}{ll}
+			0 & ,i=0\\
+			\sum_{k\le i} (x_k-x_{k-1}) \tilde{f}_k & ,i > 0
+		\end{array}\right.
+$$
+at \(x_i\). Find fertility \(f_i\) at internal points \(x_i\) where \(i=1,\ldots,N-1\) by linear interpolating \(\tilde{f}\)
+$$
+	f_i = \tilde{f}_{i+1}\frac{x_i-x_{i-1}}{x_{i+1}-x_{i-1}} + \tilde{f}_i\frac{x_{i+1}-x_i}{x_{i+1}-x_{i-1}}
+$$
+Find \(f_0\) at \(x_0\) and \(f_N\) at \(x_N\) by assuming fertility is linear in age over the end intervals \([x_0,x_1]\) and \([x_{N-1},x_{N}]\)
+$$
+\begin{eqnarray}
+	f_0&=&2\tilde{f}_1 - f_1\\
+	f_N&=& 2\tilde{f}_N - f_{N-1}
+\end{eqnarray}
+$$
+For the internal intervals \([x_{i-1},x_i]\) for \(i=2,\ldots,N-1\) assume fertility is quadratic with curvature \(C_i\)
+$$
+	C_i=\frac{12}{(x_i-x_{i-1})^2}\left(\frac{f_i+f_{i-1}}{2}-\tilde{f}_i\right)
+$$
+</p>
+</div>
+</body>
+</html>

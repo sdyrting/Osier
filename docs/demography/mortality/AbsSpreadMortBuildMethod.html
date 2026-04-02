@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Absolute Spread</title>
+<link rel="stylesheet" href="../../css/willow.css"></link>
+<link rel="stylesheet" href="../../css/willow_mod.css"></link>
+<script src="../../scripts/wloNavMenu.js"></script>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<div id="header">
+<h1>Absolute Spread</h1>
+</div>
+
+<div id="nav"></div>
+<script>wloNavMenu("../")</script>
+\(
+\newcommand{\sfrac}{l}
+\newcommand{\ssfrac}{\hat{\sfrac}}
+\newcommand{\spread}{\delta}
+\)
+
+<div id="section">
+<h2>Absolute Spread</h2>
+<p>
+Given a set of age nodes \(0=x_0,x_1,\ldots,x_n\) and survival fractions \(1=\sfrac(x_0),\sfrac(x_1),\dots,\sfrac(x_n)\) the force of mortality over the interval \([x_i,x_{i+1})\) is a constant spread \(\spread_i\) relative to a standard curve \(\ssfrac(x)\).
+\begin{equation}
+	\sfrac(x)=\sfrac(x_i) \left(\frac{\ssfrac(x)}{\ssfrac(x_i)}\right) e^{-\spread_i (x-x_i)},\quad x\in [x_i,x_{i+1})
+\end{equation}
+The build method property must be of the form ABS_SPREAD:SMortHandle  where SMortHandle  is the name of the standard mortality object enclosed in quotes.
+</p>
+</div>
+</body>
+</html>
