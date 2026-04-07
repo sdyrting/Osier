@@ -38,6 +38,83 @@ it from its binary package:
 install.packages('RprojOSR_1.0.0.zip')
 ```
 
+### Example
+
+Create an object using population, fertility, mortality, or migration
+data.
+
+``` r
+library(RprojOSR)
+library(tidyverse)
+library(ggplot2)
+
+#
+# Create a fertility object
+#
+
+asfr <- aus_f_asfr_2011
+
+fert_name <- 'Published'
+osr.CreateObj(fert_name,'FERTILITY',
+              c('Population','Date','BuildMethod'),
+              list('AUS-P/AUS-F',20110630,'CONSTANT_FERT'),
+              'FertilityRates',
+              c('Age','Rate','Use'),
+              matrix(ncol=3,byrow=FALSE,data=c(asfr$age,asfr$rate,asfr$use)))
+#> [1] "Published:0"
+```
+
+Objects can be copied or modified.
+
+``` r
+
+#
+# Copy an object
+#
+
+xfert_name <- 'Expanded'
+osr.CloneObj(xfert_name,fert_name,'FERTILITY')
+#> [1] "Expanded:0"
+
+#
+# Modify an object
+#
+
+osr.ModifyObj(,xfert_name,'FERTILITY',,'BuildMethod',,'HFC:70000')
+#> [1] "Expanded:1"
+```
+
+There are functions for calculating demographic rates and measures.
+
+``` r
+
+#
+# Calculate measures
+#
+
+# Age-specific fertility rate
+tibble(Age=seq(0,60)) %>%
+  cross_join(tibble(Data=c(fert_name,xfert_name))) %>%
+  group_by(Data,Age) %>%
+  mutate(ASFR=osr.FertRate(Data,Age)) %>%
+  ggplot()+
+  geom_line(aes(x=Age,y=ASFR,group=Data,colour=Data))
+```
+
+![](README_files/figure-gfm/asfr-1.png)<!-- -->
+
+``` r
+
+
+# Total fertility rate
+osr.TotalFertRate(xfert_name)
+#> [1] 1.9169
+
+# Mean age at childbearing
+osr.MeanAgeChild(xfert_name)
+#> [1] 30.5433
+```
+
 Example scripts are available in the `osr_examples` folder in the
 package directory[^1]. The package documentation has basic information
 on each function and vignettes giving examples of Osier in action. The
