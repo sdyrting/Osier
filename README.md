@@ -115,10 +115,142 @@ osr.MeanAgeChild(xfert_name)
 #> [1] 30.5433
 ```
 
+Objects persist until they are explicitly deleted.
+
+``` r
+# Check an object exists
+osr.GetObj(xfert_name,'FERTILITY')
+#> [1] "Expanded:1"
+
+# Delete all objects
+osr.DeleteObjs(,'')
+#> [1] "Deleted 2 objects."
+
+# Check object has been deleted
+osr.GetObj(xfert_name,'FERTILITY')
+#> [1] "Object Expanded of type FERTILITY does not exist."
+```
+
 Example scripts are available in the `osr_examples` folder in the
 package directory[^1]. The package documentation has basic information
 on each function and vignettes giving examples of Osier in action. The
 Osier [website](https://sdyrting.github.io/Osier/) gives further
 information on underlying methodologies and configuration settings.
 
+## Python
+
+The package PythonOSR provides a Python interface to the Osier library
+of demographic functions.
+
+### Installation
+
+You can install PythonOSR from its wheel:
+
+``` python
+pip install pythonosr-0.0.0.9000-cp313-cp313-win_amd64.whl
+```
+
+### Example
+
+Create an object using population, fertility, mortality, or migration
+data.
+
+``` python
+import pythonosr.osr as osr
+import pythonosr.data as osrd #Example datasets
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+#
+# Create a fertility object
+#
+
+asfr=osrd.load('aus_f_asfr_2011')
+
+fert_name='Published'
+osr.CreateObj(fert_name,'FERTILITY',
+              ['Population','Date','BuildMethod'],
+              ['AUS-P/AUS-F',20110630,'CONSTANT_FERT'],
+              'FertilityRates',
+              asfr.columns.tolist(),
+              asfr.values.tolist())
+#> 'Published:0'
+```
+
+Objects can be copied or modified.
+
+``` python
+
+#
+# Copy an object
+#
+
+xfert_name = 'Expanded'
+osr.CloneObj(xfert_name,fert_name,'FERTILITY')
+#> 'Expanded:0'
+
+#
+# Modify an object
+#
+
+osr.ModifyObj(None,xfert_name,'FERTILITY',None,'BuildMethod',None,'HFC:70000')
+#> 'Expanded:1'
+```
+
+There are functions for calculating demographic rates and measures.
+
+``` python
+
+#
+# Calculate measures
+#
+
+
+# Age-specific fertility rate
+fert_df=pd.DataFrame({'Age': range(0,61)}).merge(
+  pd.DataFrame({'Data': [fert_name,xfert_name]}),how='cross')
+fert_df['ASFR']=fert_df.apply(lambda x: osr.FertRate(x.Data,x.Age), axis=1)
+sns.lineplot(data=fert_df,x='Age',y='ASFR',hue='Data')
+plt.show()
+```
+
+<img src="README_files/figure-gfm/unnamed-chunk-7-1.png" alt="" width="672" />
+
+``` python
+
+
+# Total fertility rate
+osr.TotalFertRate(xfert_name)
+#> 1.9169
+
+# Mean age at childbearing
+osr.MeanAgeChild(xfert_name)
+#> 30.543299211686886
+```
+
+Objects persist until they are explicitly deleted.
+
+``` python
+# Check an object exists
+osr.GetObj(xfert_name,'FERTILITY')
+#> 'Expanded:1'
+
+# Delete all objects
+osr.DeleteObjs(None,'')
+#> 'Deleted 2 objects.'
+
+# Check object has been deleted
+osr.GetObj(xfert_name,'FERTILITY')
+#> 'Object Expanded of type FERTILITY does not exist.'
+```
+
+Example scripts are available in the `osr_examples` folder in the
+package directory[^2]. The package documentation has basic information
+on each function and vignettes giving examples of Osier in action. The
+Osier [website](https://sdyrting.github.io/Osier/) gives further
+information on underlying methodologies and configuration settings.
+
 [^1]: Run `find.package('RprojOSR')` to get the package directory
+
+[^2]: Run `pip show pythonosr` to get the package directory
