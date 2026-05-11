@@ -9,6 +9,10 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+knitr::opts_chunk$set(
+  engine.path = list(octave = "C:/Program Files/GNU Octave/Octave-11.1.0/mingw64/bin/octave-11.1.0.exe") 
+)
 ```
 
 # Osier
@@ -16,9 +20,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-Osier is a software library for preparing and analysing demographic data.
+Osier is a software library for preparing and analysing demographic data. It has interfaces for [Excel](#excel), [R](#r), [Python](#python), and [Octave](#octave).
 
-## Excel
+## Excel {#excel}
 
 The addin `ExcelOSR` provides an  Excel interface to Osier. To install it, follow these steps:
 
@@ -31,7 +35,7 @@ The addin `ExcelOSR` provides an  Excel interface to Osier. To install it, follo
 Help pages and example spreadsheets can be accessed via the Osier drop-down menu on the Add-ins tab. I recommend users select the Manual Calculation Option in Excel Options&rarr;Formulas. The help pages can also be found on the Osier [website](https://sdyrting.github.io/Osier/). 
 
 
-## R
+## R {#r}
 
 The package `RprojOSR` provides an R interface to Osier. You can install it from its binary package:
 
@@ -124,7 +128,7 @@ osr.GetObj(xfert_name,'FERTILITY')
 
 Example scripts are available in the `osr_examples` folder in the package directory^[Run `find.package('RprojOSR')` to get the package directory]. The package documentation has basic information on each function and vignettes giving examples of Osier in action. The Osier [website](https://sdyrting.github.io/Osier/) gives further information on underlying methodologies and configuration settings.
 
-## Python
+## Python {#python}
 
 The package PythonOSR provides a Python interface to the Osier library of demographic functions.
 
@@ -224,4 +228,168 @@ osr.DeleteObjs(None,'')
 osr.GetObj(xfert_name,'FERTILITY')
 ```
 
-Example scripts are available in the `osr_examples` folder in the package directory^[Run `pip show pythonosr` to get the package directory]. The package documentation has basic information on each function and vignettes giving examples of Osier in action. The Osier [website](https://sdyrting.github.io/Osier/) gives further information on underlying methodologies and configuration settings.
+Example scripts are available in the `osr_examples` folder in the package directory^[Run `pip show pythonosr` to get the package directory]. The package documentation has basic information on each function. The Osier [website](https://sdyrting.github.io/Osier/) gives further information on underlying methodologies and configuration settings.
+
+# Octave {#octave}
+
+The package OctaveOSR provides an Octave interface to the Osier library of demographic functions.
+
+## Installation
+
+You can install OctaveOSR from its package file:
+
+``` octave
+octave:1> pkg install OctaveOSR-0.0.0.9000-x86_64-Msys-oct-11.1.0.tar.gz
+```
+
+## Example
+
+Create an object using population, fertility, mortality, or migration data.
+
+
+
+```{octave}
+pkg load octaveosr
+pkg load dataframe
+warning off;
+
+h=osr();
+
+#
+# Create a fertility object
+#
+
+asfr=osrd.load_dataset("aus_f_asfr_2011");
+
+fert_name="Published";
+CreateObj(h,fert_name,'FERTILITY',...
+              {'Population','Date','BuildMethod'},...
+              {'AUS-P/AUS-F',20110630,'CONSTANT_FERT'}',...
+              'FertilityRates',...
+              cellstr(asfr.colnames),...
+              asfr{})
+```
+
+Objects can be copied or modified.
+
+```{octave}
+pkg load octaveosr
+pkg load dataframe
+warning off;
+
+h=osr();
+asfr=osrd.load_dataset("aus_f_asfr_2011");
+fert_name="Published";
+CreateObj(h,fert_name,'FERTILITY',...
+              {'Population','Date','BuildMethod'},...
+              {'AUS-P/AUS-F',20110630,'CONSTANT_FERT'}',...
+              'FertilityRates',...
+              cellstr(asfr.colnames),...
+              asfr{});
+
+#
+# Copy an object
+#
+
+xfert_name = 'Expanded';
+CloneObj(h,xfert_name,fert_name,'FERTILITY')
+
+#
+# Modify an object
+#
+
+ModifyObj(h,'',xfert_name,'FERTILITY','','BuildMethod','','HFC:70000')
+```
+
+
+There are functions for calculating demographic rates and measures.
+
+```{octave}
+pkg load octaveosr
+pkg load dataframe
+warning off;
+
+h=osr();
+asfr=osrd.load_dataset("aus_f_asfr_2011");
+fert_name="Published";
+CreateObj(h,fert_name,'FERTILITY',...
+              {'Population','Date','BuildMethod'},...
+              {'AUS-P/AUS-F',20110630,'CONSTANT_FERT'}',...
+              'FertilityRates',...
+              cellstr(asfr.colnames),...
+              asfr{});
+xfert_name = 'Expanded';
+ModifyObj(h,xfert_name,fert_name,'FERTILITY','','BuildMethod','','HFC:70000');
+
+#
+# Calculate measures
+#
+
+
+# Age-specific fertility rate
+Data={fert_name,xfert_name};
+Age=0:60;
+ASFR=zeros(size(Age));
+hold on;
+for i=1:length(Data)
+  for j=1:length(Age)
+    ASFR(j)=FertRate(h,Data(i),Age(j));
+  endfor
+  plot(Age,ASFR);
+endfor
+xlabel('Age');
+ylabel('ASFR');
+legend(Data);
+hold off;
+print('README_files/figure-gfm/octave_asfr_plot.png')
+
+# Total fertility rate
+TotalFertRate(h,xfert_name)
+
+# Mean age at childbearing
+MeanAgeChild(h,xfert_name)
+```
+
+![](README_files/figure-gfm/octave_asfr_plot.png)
+
+Objects persist until they are explicitly deleted.
+
+```{octave}
+pkg load octaveosr
+pkg load dataframe
+warning off;
+
+h=osr();
+asfr=osrd.load_dataset("aus_f_asfr_2011");
+fert_name="Published";
+CreateObj(h,fert_name,'FERTILITY',...
+              {'Population','Date','BuildMethod'},...
+              {'AUS-P/AUS-F',20110630,'CONSTANT_FERT'}',...
+              'FertilityRates',...
+              cellstr(asfr.colnames),...
+              asfr{});
+xfert_name = 'Expanded';
+ModifyObj(h,xfert_name,fert_name,'FERTILITY','','BuildMethod','','HFC:70000');
+
+# Check an object exists
+GetObj(h,xfert_name,'FERTILITY')
+
+# Delete all objects
+DeleteObjs(h,'',{''})
+
+# Check object has been deleted
+GetObj(h,xfert_name,'FERTILITY')
+```
+
+Example scripts are available in the `osr_examples` folder in the package directory^[Run `pkg list` to get the installation directory of all packages]. The package documentation has basic information on each function.
+
+```{octave}
+pkg load octaveosr
+warning off;
+
+methods osr;
+
+help @osr/FertRate;
+```
+
+The Osier [website](https://sdyrting.github.io/Osier/) gives further information on underlying methodologies and configuration settings.

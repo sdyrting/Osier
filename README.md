@@ -8,7 +8,8 @@
 <!-- badges: end -->
 
 Osier is a software library for preparing and analysing demographic
-data.
+data. It has interfaces for [Excel](#excel), [R](#r), [Python](#python),
+and [Octave](#octave).
 
 ## Excel
 
@@ -247,10 +248,254 @@ osr.GetObj(xfert_name,'FERTILITY')
 
 Example scripts are available in the `osr_examples` folder in the
 package directory[^2]. The package documentation has basic information
-on each function and vignettes giving examples of Osier in action. The
-Osier [website](https://sdyrting.github.io/Osier/) gives further
+on each function. The Osier [website](https://sdyrting.github.io/Osier/)
+gives further information on underlying methodologies and configuration
+settings.
+
+# Octave
+
+The package OctaveOSR provides an Octave interface to the Osier library
+of demographic functions.
+
+## Installation
+
+You can install OctaveOSR from its package file:
+
+``` octave
+octave:1> pkg install OctaveOSR-0.0.0.9000-x86_64-Msys-oct-11.1.0.tar.gz
+```
+
+## Example
+
+Create an object using population, fertility, mortality, or migration
+data.
+
+``` octave
+pkg load octaveosr
+pkg load dataframe
+warning off;
+
+h=osr();
+
+#
+# Create a fertility object
+#
+
+asfr=osrd.load_dataset("aus_f_asfr_2011");
+
+fert_name="Published";
+CreateObj(h,fert_name,'FERTILITY',...
+              {'Population','Date','BuildMethod'},...
+              {'AUS-P/AUS-F',20110630,'CONSTANT_FERT'}',...
+              'FertilityRates',...
+              cellstr(asfr.colnames),...
+              asfr{})
+#> ans = Published:0
+```
+
+Objects can be copied or modified.
+
+``` octave
+pkg load octaveosr
+pkg load dataframe
+warning off;
+
+h=osr();
+asfr=osrd.load_dataset("aus_f_asfr_2011");
+fert_name="Published";
+CreateObj(h,fert_name,'FERTILITY',...
+              {'Population','Date','BuildMethod'},...
+              {'AUS-P/AUS-F',20110630,'CONSTANT_FERT'}',...
+              'FertilityRates',...
+              cellstr(asfr.colnames),...
+              asfr{});
+
+#
+# Copy an object
+#
+
+xfert_name = 'Expanded';
+CloneObj(h,xfert_name,fert_name,'FERTILITY')
+
+#
+# Modify an object
+#
+
+ModifyObj(h,'',xfert_name,'FERTILITY','','BuildMethod','','HFC:70000')
+#> ans = Expanded:0
+#> ans = Expanded:1
+```
+
+There are functions for calculating demographic rates and measures.
+
+``` octave
+pkg load octaveosr
+pkg load dataframe
+warning off;
+
+h=osr();
+asfr=osrd.load_dataset("aus_f_asfr_2011");
+fert_name="Published";
+CreateObj(h,fert_name,'FERTILITY',...
+              {'Population','Date','BuildMethod'},...
+              {'AUS-P/AUS-F',20110630,'CONSTANT_FERT'}',...
+              'FertilityRates',...
+              cellstr(asfr.colnames),...
+              asfr{});
+xfert_name = 'Expanded';
+ModifyObj(h,xfert_name,fert_name,'FERTILITY','','BuildMethod','','HFC:70000');
+
+#
+# Calculate measures
+#
+
+
+# Age-specific fertility rate
+Data={fert_name,xfert_name};
+Age=0:60;
+ASFR=zeros(size(Age));
+hold on;
+for i=1:length(Data)
+  for j=1:length(Age)
+    ASFR(j)=FertRate(h,Data(i),Age(j));
+  endfor
+  plot(Age,ASFR);
+endfor
+xlabel('Age');
+ylabel('ASFR');
+legend(Data);
+hold off;
+print('README_files/figure-gfm/octave_asfr_plot.png')
+
+# Total fertility rate
+TotalFertRate(h,xfert_name)
+
+# Mean age at childbearing
+MeanAgeChild(h,xfert_name)
+#> ans = 1.9169
+#> ans = 30.543
+```
+
+![](README_files/figure-gfm/octave_asfr_plot.png)
+
+Objects persist until they are explicitly deleted.
+
+``` octave
+pkg load octaveosr
+pkg load dataframe
+warning off;
+
+h=osr();
+asfr=osrd.load_dataset("aus_f_asfr_2011");
+fert_name="Published";
+CreateObj(h,fert_name,'FERTILITY',...
+              {'Population','Date','BuildMethod'},...
+              {'AUS-P/AUS-F',20110630,'CONSTANT_FERT'}',...
+              'FertilityRates',...
+              cellstr(asfr.colnames),...
+              asfr{});
+xfert_name = 'Expanded';
+ModifyObj(h,xfert_name,fert_name,'FERTILITY','','BuildMethod','','HFC:70000');
+
+# Check an object exists
+GetObj(h,xfert_name,'FERTILITY')
+
+# Delete all objects
+DeleteObjs(h,'',{''})
+
+# Check object has been deleted
+GetObj(h,xfert_name,'FERTILITY')
+#> ans = Expanded:0
+#> ans = Deleted 2 objects.
+#> ans = Object Expanded of type FERTILITY does not exist.
+```
+
+Example scripts are available in the `osr_examples` folder in the
+package directory[^3]. The package documentation has basic information
+on each function.
+
+``` octave
+pkg load octaveosr
+warning off;
+
+methods osr;
+
+help @osr/FertRate;
+#> Methods for class osr:
+#> Append                     ListObjs
+#> Births                     ListToMatrix
+#> CalibReturnMigration       LoadLibrary
+#> ClearAllResults            LoadObjs
+#> CloneObj                   LoadObjsFromDataDirectory
+#> ColSort                    MakeGrid
+#> CountryAlpha2ToNum         MakeMatrix
+#> CountryAlpha3ToNum         MakeVector
+#> CountryNameToNum           MatrixInterp
+#> CountryNumToAlpha2         MatrixToList
+#> CountryNumToAlpha3         MeanAgeChild
+#> CountryNumToName           MedianAge
+#> CreateObj                  MigrationProb
+#> CreateOneYearMig           MigrationRatio
+#> CreateScenarioMort         ModalDeathAge
+#> DeathDist                  ModifyObj
+#> DeathProb                  MultiYearMigrationProb
+#> DeathRate                  NetReproRate
+#> Deaths                     Number
+#> DeleteObjs                 Osier
+#> DisplayAllResults          OutSurvival
+#> DisplayObj                 PushResult
+#> DisplayObjLabels           Resize
+#> DisplaySubtableNames       SDSurvFrac
+#> DyingProb                  SDYearsLived
+#> ErrorFlag                  SDYearsLivedAfter
+#> FertRate                   SaveObjs
+#> FillMatrix                 StartLog
+#> GetError                   StopLog
+#> GetFertParams              SurvFrac
+#> GetMigrationParams         SurvProb
+#> GetMortParams              TotalFertRate
+#> GetObj                     TotalNumber
+#> GetObjInfo                 WLTranspose
+#> GetPCurveParams            YearsLived
+#> GridToObject               YearsLivedAfter
+#> GroupedProb                addParameter
+#> GroupedRatio               close
+#> InterpMatrixValue          display
+#> LifeDisp                   makeFunctionCall
+#> LifeExp                    newFunction
+#> LineInt                    osr
+#> 
+#> '@osr/FertRate' is a function from the file C:\Users\sdyrting\AppData\Roaming\octave\api-v61\packages\octaveosr-0.0.0.9000\@osr\FertRate.m
+#> 
+#>  -- Function FileRETVAL=: FertRate
+#>           (osr_obj,FERTHANDLE,AGE,_AGEINTERVAL_)
+#> 
+#>      Returns the age-specific fertility rate for age interval
+#>      [Age,Age+AgeInterval).
+#> 
+#>      FERTHANDLE
+#>           The fertility handle
+#> 
+#>      AGE
+#>           The age.
+#> 
+#>      _AGEINTERVAL_
+#>           Optional.  The age interval.  If not specified it defaults to
+#>           1.0
+#> 
+#> Additional help for built-in functions and operators is
+#> available in the online version of the manual.  Use the command
+#> 'doc <topic>' to search the manual index.
+#> 
+#> Help and information about Octave is also available on the WWW
+#> at https://www.octave.org and https://octave.discourse.group/c/help/
+```
+
+The Osier [website](https://sdyrting.github.io/Osier/) gives further
 information on underlying methodologies and configuration settings.
 
 [^1]: Run `find.package('RprojOSR')` to get the package directory
 
 [^2]: Run `pip show pythonosr` to get the package directory
+
+[^3]: Run `pkg list` to get the installation directory of all packages
