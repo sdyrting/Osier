@@ -9,7 +9,10 @@
 
 Osier is a software library for preparing and analysing demographic
 data. It has interfaces for [Excel](#excel), [R](#r), [Python](#python),
-and [Octave](#octave).
+[Octave](#octave), and [Ruby](#ruby). Each interface includes basic
+information on each function. The Osier
+[website](https://sdyrting.github.io/Osier/) gives further information
+on underlying methodologies and configuration settings.
 
 ## Excel
 
@@ -27,8 +30,7 @@ it, follow these steps:
 
 Help pages and example spreadsheets can be accessed via the Osier
 drop-down menu on the Add-ins tab. I recommend users select the Manual
-Calculation Option in Excel Options→Formulas. The help pages can also be
-found on the Osier [website](https://sdyrting.github.io/Osier/).
+Calculation Option in Excel Options→Formulas.
 
 ## R
 
@@ -134,9 +136,7 @@ osr.GetObj(xfert_name,'FERTILITY')
 
 Example scripts are available in the `osr_examples` folder in the
 package directory[^1]. The package documentation has basic information
-on each function and vignettes giving examples of Osier in action. The
-Osier [website](https://sdyrting.github.io/Osier/) gives further
-information on underlying methodologies and configuration settings.
+on each function and vignettes giving examples of Osier in action.
 
 ## Python
 
@@ -247,10 +247,7 @@ osr.GetObj(xfert_name,'FERTILITY')
 ```
 
 Example scripts are available in the `osr_examples` folder in the
-package directory[^2]. The package documentation has basic information
-on each function. The Osier [website](https://sdyrting.github.io/Osier/)
-gives further information on underlying methodologies and configuration
-settings.
+package directory[^2].
 
 # Octave
 
@@ -411,8 +408,7 @@ GetObj(h,xfert_name,'FERTILITY')
 ```
 
 Example scripts are available in the `osr_examples` folder in the
-package directory[^3]. The package documentation has basic information
-on each function.
+package directory[^3].
 
 ``` octave
 pkg load octaveosr
@@ -491,8 +487,171 @@ help @osr/FertRate;
 #> at https://www.octave.org and https://octave.discourse.group/c/help/
 ```
 
-The Osier [website](https://sdyrting.github.io/Osier/) gives further
-information on underlying methodologies and configuration settings.
+# Ruby
+
+The package RubyOSR provides a Ruby interface to the Osier library of
+demographic functions.
+
+## Installation
+
+You can install RubyOSR from its gem:
+
+``` ruby
+> gem install rubyosr-0.0.0.9000.gem
+```
+
+## Example
+
+Create an object using population, fertility, mortality, or migration
+data.
+
+``` ruby
+require 'rubyosr'
+require 'osrd' #For bundled data
+
+h=Osier.new
+
+#
+# Create a fertility object
+#
+
+asfr=Osrd.load_dataset("aus_f_asfr_2011")
+
+fert_name="Published"
+table_cols = asfr.headers
+table_values = asfr.to_a.drop(1)
+
+ans=h.CreateObj(fert_name,'FERTILITY',
+              ['Population','Date','BuildMethod'],
+              ['AUS-P/AUS-F',20110630,'CONSTANT_FERT'],
+              'FertilityRates',
+              table_cols,
+              table_values)
+puts ans
+#> Published:0
+```
+
+Objects can be copied or modified.
+
+``` ruby
+require 'rubyosr'
+require 'osrd'
+
+h=Osier.new
+
+asfr=Osrd.load_dataset("aus_f_asfr_2011")
+fert_name="Published";
+puts h.CreateObj(fert_name,'FERTILITY',
+              ['Population','Date','BuildMethod'],
+              ['AUS-P/AUS-F',20110630,'CONSTANT_FERT'],
+              'FertilityRates',
+              asfr.headers,
+              asfr.to_a.drop(1))
+
+#
+# Copy an object
+#
+
+xfert_name = 'Expanded'
+puts h.CloneObj(xfert_name,fert_name,'FERTILITY')
+
+#
+# Modify an object
+#
+
+puts h.ModifyObj(nil,xfert_name,'FERTILITY',nil,'BuildMethod',nil,'HFC:70000')
+#> Published:0
+#> Expanded:0
+#> Expanded:1
+```
+
+There are functions for calculating demographic rates and measures.
+
+``` ruby
+require 'rubyosr'
+require 'osrd'
+require 'polars-df'
+require 'charty'
+require 'matplotlib'
+
+Charty::Backends.use(:pyplot)
+Matplotlib.use(:agg)
+
+h=Osier.new
+asfr=Osrd.load_dataset("aus_f_asfr_2011")
+fert_name="Published"
+h.CreateObj(fert_name,'FERTILITY',
+              ['Population','Date','BuildMethod'],
+              ['AUS-P/AUS-F',20110630,'CONSTANT_FERT'],
+              'FertilityRates',
+              asfr.headers,
+              asfr.to_a.drop(1))
+xfert_name = 'Expanded'
+h.ModifyObj(xfert_name,fert_name,'FERTILITY',nil,'BuildMethod',nil,'HFC:70000')
+
+#
+# Calculate measures
+#
+
+# Age-specific fertility rate
+df=Polars::DataFrame.new({
+  Data: [fert_name,xfert_name]
+}).join(
+  Polars::DataFrame.new({
+  Age: 0.step(60,1).to_a
+}), how: 'cross'
+).with_columns(
+  ASFR: Polars.struct(["Data","Age"]).map_elements(return_dtype: Polars::Float64) {|row| h.FertRate(row["Data"],row["Age"])}
+)
+
+plot_data = {
+  'Age': df["Age"].to_a,
+  'Data': df["Data"].to_a,
+  'ASFR': df["ASFR"].to_a
+}
+Charty.line_plot(data: plot_data, x: :Age, y: :ASFR, color: :Data).save('README_files/figure-gfm/ruby_asfr_plot.png')
+
+# Total fertility rate
+puts h.TotalFertRate(xfert_name)
+
+# Mean age at childbearing
+puts h.MeanAgeChild(xfert_name)
+#> 1.9169
+#> 30.543299211686886
+```
+
+![](README_files/figure-gfm/ruby_asfr_plot.png)
+
+Objects persist until they are explicitly deleted.
+
+``` ruby
+require 'rubyosr'
+require 'osrd'
+
+h=Osier.new
+asfr=Osrd.load_dataset("aus_f_asfr_2011")
+fert_name="Published"
+h.CreateObj(fert_name,'FERTILITY',
+              ['Population','Date','BuildMethod'],
+              ['AUS-P/AUS-F',20110630,'CONSTANT_FERT'],
+              'FertilityRates',
+              asfr.headers,
+              asfr.to_a.drop(1))
+xfert_name = 'Expanded'
+h.ModifyObj(xfert_name,fert_name,'FERTILITY',nil,'BuildMethod',nil,'HFC:70000')
+
+# Check an object exists
+puts h.GetObj(xfert_name,'FERTILITY')
+
+# Delete all objects
+puts h.DeleteObjs(nil,'')
+
+# Check object has been deleted
+puts h.GetObj(xfert_name,'FERTILITY')
+#> Expanded:0
+#> Deleted 2 objects.
+#> Object Expanded of type FERTILITY does not exist.
+```
 
 [^1]: Run `find.package('RprojOSR')` to get the package directory
 
