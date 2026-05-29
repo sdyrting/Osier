@@ -549,3 +549,5 @@ puts h.DeleteObjs(nil,'')
 # Check object has been deleted
 puts h.GetObj(xfert_name,'FERTILITY')
 ```
+
+Example scripts are available in the `osr_examples` folder in the package directory^[Run `gem which rubyosr` to get the installation directory].

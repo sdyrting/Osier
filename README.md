@@ -653,8 +653,13 @@ puts h.GetObj(xfert_name,'FERTILITY')
 #> Object Expanded of type FERTILITY does not exist.
 ```
 
+Example scripts are available in the `osr_examples` folder in the
+package directory[^4].
+
 [^1]: Run `find.package('RprojOSR')` to get the package directory
 
 [^2]: Run `pip show pythonosr` to get the package directory
 
 [^3]: Run `pkg list` to get the installation directory of all packages
+
+[^4]: Run `gem which rubyosr` to get the installation directory
