@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 authors:
-	- family-names: "Dyrting"
-	  given-names: "Sigurd"
-	  orcid: "https://orcid.org/0000-0002-1939-085X"
+  - family-names: "Dyrting"
+    given-names: "Sigurd"
+    orcid: "https://orcid.org/0000-0002-1939-085X"
 title: "Osier"
 version: 1.0.1
 doi: 10.5281/zenodo.20481803
